@@ -1,0 +1,10 @@
+{
+	"version": 3,
+	"file": "style.css",
+	"sources": [
+		"style.scss",
+		"elements/_navigation.scss"
+	],
+	"names": [],
+	"mappings": ";AAAA;;;;;;;;;;;;;;;;;;;;EAoBE;AAEF;;;;;;;;;;;;;;;;;;;;;gEAqBgE;ACvChE;;EAEE;AAEF,AAAA,EAAE,AAAA,aAAa,CAAC;EACd,OAAO,EAAE,IAAI;EACb,UAAU,EAAE,IAAI;CAIjB;;AAND,AAGE,EAHA,AAAA,aAAa,CAGb,EAAE,AAAA,IAAK,CAAA,UAAU,EAAE;EACjB,aAAa,EAAE,IAAI;CACpB;;AAGH;;EAEE;AAMF;;EAEE;AAEF,AAEI,oBAFgB,CAClB,gBAAgB,GACZ,CAAC,CAAC;EACF,KAAK,EAAE,IAAI;CACZ;;AAJL,AAKI,oBALgB,CAClB,gBAAgB,CAId,aAAa,CAAC;EACZ,UAAU,EAAE,MAAM;CACnB;;AAPL,AAQI,oBARgB,CAClB,gBAAgB,CAOd,aAAa,CAAC;EACZ,eAAe,EAAE,MAAM;CACxB"
+}

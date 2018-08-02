@@ -1,0 +1,45 @@
+
+
+
+
+/*
+*   Primary navigation
+*/
+
+ul#primary-menu {
+  display: flex;
+  list-style: none;
+  li:not(last-child) {
+    padding-right: 12px;
+  }
+}
+
+/*
+*   Horizontal navigationbar
+*/
+
+.navigation-horizontal {
+
+}
+
+/*
+*   Vertical navigationbar
+*/
+
+.navigation-vertical {
+  #main-navigation {
+    > * {
+      width: 100%;
+    }
+    .navbar-brand {
+      text-align: center;
+    }
+    #primary-menu {
+      justify-content: center;
+    }
+  }
+}
+
+/*
+*   Different navigationbar
+*/
