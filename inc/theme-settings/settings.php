@@ -27,6 +27,7 @@ $navigation->options[] = array(
   'option_name'     => 'Main Navigation Layout',
 	'option_section'  => 'layout',
 	'type'            => 'checkbox',
+  'htmlclass'       => 'big-checkbox',
 	'values'          => array( 'navigation-horizontal', 'navigation-vertical' )
 );
 
@@ -48,5 +49,5 @@ $navbarPage->options[] = array(
 
 //$navbarPage->create_settings();
 
-$page->create_settings();
-$navigation->create_settings();
+$page->hook_create_settings();
+$navigation->hook_create_settings();
