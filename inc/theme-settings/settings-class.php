@@ -41,7 +41,7 @@ class OptionsPage {
       <?php
     }
 
-    
+
     public function create_settings_section() {
       for( $i = 0; $i < sizeof($this->args['sections']); $i++ ) {
         add_settings_section( $this::slugify($this->args['sections'][$i]), $this->args['sections'][$i], [$this, 'section_callback_function'], $this->args['slug'] );
