@@ -44,7 +44,10 @@ class OptionsPage {
 
     public function create_settings_section() {
       for( $i = 0; $i < sizeof($this->args['sections']); $i++ ) {
-        add_settings_section( $this::slugify($this->args['sections'][$i]), $this->args['sections'][$i], [$this, 'section_callback_function'], $this->args['slug'] );
+        add_settings_section( $this::slugify($this->args['sections'][$i]),
+                              $this->args['sections'][$i],
+                              [$this, 'section_callback_function'],
+                              $this->args['slug'] );
       }
     }
 
@@ -58,10 +61,13 @@ class OptionsPage {
 
       for( $i = 0; $i < sizeof($this->options); $i++ ) {
         register_setting( $this->args['slug'], $this::slugify($this->options[$i]['option_name']) );
-        add_settings_field( $this::slugify($this->options[$i]['option_name']), $this->options[$i]['option_name'], [$this, 'pampas_render_fields_function'], $this->args['slug'], $this->options[$i]['option_section'],
-        array( 'setting' => $this::slugify($this->options[$i]['option_name']),
-               'type' => $this->options[$i]['type'],
-               'values' => $this->options[$i]['values']
+        add_settings_field( $this::slugify($this->options[$i]['option_name']),
+                            $this->options[$i]['option_name'],
+                            [$this, 'pampas_render_fields_function'],
+                            $this->args['slug'], $this->options[$i]['option_section'],
+                            array( 'setting' => $this::slugify($this->options[$i]['option_name']),
+                                   'type' => $this->options[$i]['type'],
+                                   'values' => $this->options[$i]['values']
              ));
       }
     }
