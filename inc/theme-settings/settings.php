@@ -1,6 +1,9 @@
 <?php
 require get_template_directory() . '/inc/theme-settings/settings-class.php';
-
+add_action( 'admin_enqueue_scripts', 'asdf_admin_styles_fn' );
+function asdf_admin_styles_fn() {
+  wp_enqueue_style('asdf-admin-css', get_stylesheet_directory_URI() . '/inc/theme-settings/settings-style.css');
+}
 
 
 $page = new OptionsPage( array(
@@ -26,8 +29,8 @@ $navigation = new Subpage( $page, array(
 $navigation->options[] = array(
   'option_name'     => 'Main Navigation Layout',
 	'option_section'  => 'layout',
-	'type'            => 'checkbox',
-  'htmlclass'       => 'big-checkbox',
+	'type'            => 'radio',
+  'htmlclass'       => 'asdf-option-radio big',
 	'values'          => array( 'navigation-horizontal', 'navigation-vertical' )
 );
 
