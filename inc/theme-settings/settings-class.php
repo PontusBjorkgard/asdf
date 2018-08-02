@@ -1,24 +1,27 @@
 <?php
 class OptionsPage {
 
-  public $args = array();
-  public $options = array();
+    public $args = array();
+    public $options = array();
 
-  public function __construct( $args ) {
-    $this->args = $args;
-    add_action( 'admin_menu', [$this, 'add_page'] );
-  }
+    public function __construct( $args ) {
+      $this->args = $args;
+      add_action( 'admin_menu', [$this, 'add_page'] );
+    }
 
-  public function add_page() {
-    add_menu_page( $this->args['name'],
-                   $this->args['menu-name'],
-                   'manage_options',
-                   $this->args['slug'],
-                   [$this, 'output_page'],
-                   '',
-                   3 );
-          add_action( 'admin_init', [$this, 'createSettingsSection'] );
-  }
+    /*
+    *   adds Main menu page
+    */
+    public function add_page() {
+      add_menu_page( $this->args['name'],
+                     $this->args['menu-name'],
+                     'manage_options',
+                     $this->args['slug'],
+                     [$this, 'output_page'],
+                     '',
+                     3 );
+            add_action( 'admin_init', [$this, 'create_settings_section'] );
+    }
 
     /*
     *   add_menu_page callback method. Used to output the html
@@ -38,17 +41,20 @@ class OptionsPage {
       <?php
     }
 
-    public function createSettingsSection() {
+    
+    public function create_settings_section() {
       for( $i = 0; $i < sizeof($this->args['sections']); $i++ ) {
         add_settings_section( $this::slugify($this->args['sections'][$i]), $this->args['sections'][$i], [$this, 'section_callback_function'], $this->args['slug'] );
       }
     }
-    public function section_callback_function() { echo "section_callback_function()"; }
+
+
+    public function section_callback_function() { }
 
 
 
 
-    public function createSettings() {
+    public function create_settings() {
 
       for( $i = 0; $i < sizeof($this->options); $i++ ) {
         register_setting( $this->args['slug'], $this::slugify($this->options[$i]['option_name']) );
@@ -60,7 +66,7 @@ class OptionsPage {
       }
     }
     public function create_settings() {
-      add_action( 'admin_init', [$this, 'createSettings'] );
+      add_action( 'admin_init', [$this, 'create_settings'] );
     }
 
     public function pampas_render_fields_function( $args ) {
@@ -129,6 +135,6 @@ class OptionsPage {
                           'manage_options',
                           $this->args['slug'],
                           [$this, 'output_page'] );
-                          add_action( 'admin_init', [$this, 'createSettingsSection'] );
+                          add_action( 'admin_init', [$this, 'create_settings_section'] );
       }
   }
