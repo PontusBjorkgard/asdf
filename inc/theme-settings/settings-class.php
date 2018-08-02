@@ -1,11 +1,11 @@
 <?php
 class OptionsPage {
 
-    public $args = array();
+    public $pageProperties = array();
     public $options = array();
 
     public function __construct( $args ) {
-      $this->args = $args;
+      $this->pageProperties = $args;
       add_action( 'admin_menu', [$this, 'add_page'] );
     }
 
@@ -13,10 +13,10 @@ class OptionsPage {
     *   adds Main menu page
     */
     public function add_page() {
-      add_menu_page( $this->args['name'],
-                     $this->args['menu-name'],
+      add_menu_page( $this->pageProperties['name'],
+                     $this->pageProperties['menu-name'],
                      'manage_options',
-                     $this->args['slug'],
+                     $this->pageProperties['slug'],
                      [$this, 'output_page'],
                      '',
                      3 );
@@ -29,11 +29,11 @@ class OptionsPage {
     public function output_page() {
       ?>
       <div class="pampas-settings">
-    	   <h1> <?php echo $this->args['name']; ?> </h1>
+    	   <h1> <?php echo $this->pageProperties['name']; ?> </h1>
          <form method="post" action="options.php">
     			<?php
-            settings_fields( $this->args['slug'] );
-            do_settings_sections( $this->args['slug'] );
+            settings_fields( $this->pageProperties['slug'] );
+            do_settings_sections( $this->pageProperties['slug'] );
     				submit_button();
     			 ?>
     		</form>
@@ -43,11 +43,11 @@ class OptionsPage {
 
 
     public function create_settings_section() {
-      for( $i = 0; $i < sizeof($this->args['sections']); $i++ ) {
-        add_settings_section( $this::slugify($this->args['sections'][$i]),
-                              $this->args['sections'][$i],
+      for( $i = 0; $i < sizeof($this->pageProperties['sections']); $i++ ) {
+        add_settings_section( $this::slugify($this->pageProperties['sections'][$i]),
+                              $this->pageProperties['sections'][$i],
                               [$this, 'section_callback_function'],
-                              $this->args['slug'] );
+                              $this->pageProperties['slug'] );
       }
     }
 
@@ -60,18 +60,19 @@ class OptionsPage {
     public function create_settings() {
 
       for( $i = 0; $i < sizeof($this->options); $i++ ) {
-        register_setting( $this->args['slug'], $this::slugify($this->options[$i]['option_name']) );
+        register_setting( $this->pageProperties['slug'], $this::slugify($this->options[$i]['option_name']) );
+
         add_settings_field( $this::slugify($this->options[$i]['option_name']),
                             $this->options[$i]['option_name'],
                             [$this, 'pampas_render_fields_function'],
-                            $this->args['slug'], $this->options[$i]['option_section'],
+                            $this->pageProperties['slug'], $this->options[$i]['option_section'],
                             array( 'setting' => $this::slugify($this->options[$i]['option_name']),
                                    'type' => $this->options[$i]['type'],
                                    'values' => $this->options[$i]['values']
              ));
       }
     }
-    public function create_settings() {
+    public function hook_create_settings() {
       add_action( 'admin_init', [$this, 'create_settings'] );
     }
 
@@ -126,20 +127,20 @@ class OptionsPage {
   class SubPage extends OptionsPage {
 
       public $parent;
-      public $args;
+      public $pageProperties;
 
       public function __construct( $parent, $args ) {
         $this->parent = $parent;
-        $this->args = $args;
+        $this->pageProperties = $args;
         add_action( 'admin_menu', [$this, 'add_submenu_page']);
       }
 
       public function add_submenu_page() {
-        add_submenu_page( $this->parent->args['slug'],
-                          $this->args['name'],
-                          $this->args['menu-name'],
+        add_submenu_page( $this->parent->pageProperties['slug'],
+                          $this->pageProperties['name'],
+                          $this->pageProperties['menu-name'],
                           'manage_options',
-                          $this->args['slug'],
+                          $this->pageProperties['slug'],
                           [$this, 'output_page'] );
                           add_action( 'admin_init', [$this, 'create_settings_section'] );
       }
