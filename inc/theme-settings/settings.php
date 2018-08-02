@@ -27,6 +27,7 @@ $navigation->options[] = array(
   'option_name'     => 'Main Navigation Layout',
 	'option_section'  => 'layout',
 	'type'            => 'checkbox',
+  'htmlclass'       => 'big-checkbox',
 	'values'          => array( 'navigation-horizontal', 'navigation-vertical' )
 );
 

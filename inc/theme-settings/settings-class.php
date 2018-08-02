@@ -68,7 +68,8 @@ class OptionsPage {
                             $this->pageProperties['slug'], $this->options[$i]['option_section'],
                             array( 'setting' => $this::slugify($this->options[$i]['option_name']),
                                    'type' => $this->options[$i]['type'],
-                                   'values' => $this->options[$i]['values']
+                                   'values' => $this->options[$i]['values'],
+                                   'htmlclass' => $this->options[$i]['htmlclass']
              ));
       }
     }
@@ -79,11 +80,12 @@ class OptionsPage {
     public function pampas_render_fields_function( $args ) {
     	$setting = $args['setting'];
     	$type = $args['type'];
+      $class = $args['htmlclass'];
     	$value = get_option( $setting );
 
       if( $type == 'radio' || $type == 'checkbox' ) {
         for( $i=0; $i<sizeof($args['values']); $i++) {
-          echo '<input type="' . $type . '" name="' . $setting . '" value="' . $args['values'][$i] . '" />';
+          echo '<input id="' . $setting .'-option-' . $i . '" class="' . $class . '" type="' . $type . '" name="' . $setting . '" value="' . $args['values'][$i] . '" />';
         }
       }
       else {
