@@ -30,7 +30,7 @@ $navigation->options[] = array(
 	'option_section'  => 'layout',
 	'type'            => 'radio',
   'htmlclass'       => 'asdf-option-radio big',
-	'values'          => array( 'navigation-horizontal', 'navigation-vertical' )
+	'choices'          => array( 'navigation-horizontal', 'navigation-vertical' )
 );
 
 

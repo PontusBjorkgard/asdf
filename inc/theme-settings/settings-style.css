@@ -5,4 +5,22 @@
 .asdf-option-radio.big {
   height: 150px;
   width: 150px;
+  border-radius: 0;
+  background-size: cover;
+  background-image: url("/wordpress/wp-content/themes/asdf/inc/graphics/classic-menu.png");
+}
+
+#main-navigation-layout-option-0 { background-image: url("../graphics/inline-menu.png"); }
+#main-navigation-layout-option-1 { background-image: url("../graphics/classic-menu.png"); }
+
+.asdf-option-radio.big:checked:before {
+    content: "" !important;
+
+    border-radius: 0 !important;
+
+    margin: 0 !important;
+
+    background-color: rgba(0,0,0,0.4) !important;
+    width: 100% !important;
+    height: 100% !important;
 }

@@ -60,6 +60,7 @@ class OptionsPage {
     public function create_settings() {
 
       for( $i = 0; $i < sizeof($this->options); $i++ ) {
+
         register_setting( $this->pageProperties['slug'], $this->options[$i]['option_slug'] );
 
         add_settings_field( $this->options[$i]['option_slug'],
@@ -69,7 +70,7 @@ class OptionsPage {
                             $this->options[$i]['option_section'],
                             array( 'setting'   => $this->options[$i]['option_slug'],
                                    'type'      => $this->options[$i]['type'],
-                                   'values'    => $this->options[$i]['values'],
+                                   'choices'    => $this->options[$i]['choices'],
                                    'htmlclass' => $this->options[$i]['htmlclass']
              ));
       }
@@ -79,18 +80,34 @@ class OptionsPage {
     }
 
     public function pampas_render_fields_function( $args ) {
+
     	$setting = $args['setting'];
-    	$type = $args['type'];
-      $class = $args['htmlclass'];
-    	$value = get_option( $setting );
+    	$type    = $args['type'];
+      $class   = $args['htmlclass'];
+      $choices = $args['choices'];
+
+    	$value   = get_option( $setting );
 
       if( $type == 'radio' || $type == 'checkbox' ) {
-        for( $i=0; $i<sizeof($args['values']); $i++) {
-          echo '<input id="' . $setting .'-option-' . $i . '" class="' . $class . '" type="' . $type . '" name="' . $setting . '" value="' . $args['values'][$i] . '" />';
+        for( $i=0; $i<sizeof($choices); $i++) {
+          $checked = '';
+          if ( $value === $choices[$i] ) {
+            $checked = 'checked';
+          }
+          echo '<input id="' .    $setting .'-option-' . $i . '"
+                       class="' . $class . '"
+                       type="' .  $type . '"
+                       name="' .  $setting . '"
+                       value="' . $choices[$i] . '"
+                       ' .        $checked . '  />';
         }
       }
       else {
-        echo '<input type="' . $type . '" name="' . $setting . '" value="' . $value . '" />';
+        echo '<input id="' .      $setting . '"
+                     class="' .   $class . '"
+                     type="' .    $type . '"
+                     name="' .    $setting . '"
+                     value="' .   $value . '" />';
       }
 
     }

@@ -158,10 +158,6 @@ require get_template_directory() . '/inc/customizer.php';
  */
 require get_template_directory() . '/inc/theme-settings/settings.php';
 
-/**
- * Hooks
- */
-require get_template_directory() . '/inc/hooks.php';
 
 /**
  * Load Jetpack compatibility file.
