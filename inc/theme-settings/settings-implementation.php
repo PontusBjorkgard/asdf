@@ -22,9 +22,5 @@ function asdf_body_classes( $classes ) {
 add_filter( 'post_class', 'asdf_article_classes' );
 function asdf_article_classes( $classes ) {
 
-  //if ( is_singular() ) {
-    $classes[] = get_option( 'single-layout' );
-  //}
-
   return $classes;
 }
