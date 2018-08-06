@@ -15,6 +15,7 @@ $page = new OptionsPage( array(
 
 $page->options[] = array(
 	'option_name' => 'Theme style',
+  'option_slug' => 'theme-style',
 	'option_section' => 'main',
 	'type' => 'text'
 );
@@ -28,29 +29,13 @@ $navigation = new Subpage( $page, array(
 
 $navigation->options[] = array(
   'option_name'     => 'Main Navigation Layout',
+  'option_slug'     => 'main-navigation-layout',
 	'option_section'  => 'layout',
 	'type'            => 'radio',
   'htmlclass'       => 'asdf-option-radio big',
 	'values'          => array( 'navigation-horizontal', 'navigation-vertical' )
 );
 
-/*
-$navbarPage = new SubPage( $page, array(
-  'name' => 'Navbar settings',
-  'menu-name' => 'Navbar',
-  'slug' => 'pampas-admin-nav',
-	'sections' => array( 'Layout', 'Colors' )
-));
-
-$navbarPage->options[] = array(
-	'option_name' => 'Navbar layout',
-	'option_section' => 'layout',
-	'type' => 'checkbox',
-	'values' => array( 'Align left', 'Center' )
-);
-*/
-
-//$navbarPage->create_settings();
 
 $page->hook_create_settings();
 $navigation->hook_create_settings();

@@ -60,15 +60,16 @@ class OptionsPage {
     public function create_settings() {
 
       for( $i = 0; $i < sizeof($this->options); $i++ ) {
-        register_setting( $this->pageProperties['slug'], $this::slugify($this->options[$i]['option_name']) );
+        register_setting( $this->pageProperties['slug'], $this->options[$i]['option_slug'] );
 
-        add_settings_field( $this::slugify($this->options[$i]['option_name']),
+        add_settings_field( $this->options[$i]['option_slug'],
                             $this->options[$i]['option_name'],
                             [$this, 'pampas_render_fields_function'],
-                            $this->pageProperties['slug'], $this->options[$i]['option_section'],
-                            array( 'setting' => $this::slugify($this->options[$i]['option_name']),
-                                   'type' => $this->options[$i]['type'],
-                                   'values' => $this->options[$i]['values'],
+                            $this->pageProperties['slug'],
+                            $this->options[$i]['option_section'],
+                            array( 'setting'   => $this->options[$i]['option_slug'],
+                                   'type'      => $this->options[$i]['type'],
+                                   'values'    => $this->options[$i]['values'],
                                    'htmlclass' => $this->options[$i]['htmlclass']
              ));
       }
