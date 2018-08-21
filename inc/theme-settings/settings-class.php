@@ -71,7 +71,8 @@ class OptionsPage {
                             array( 'setting'   => $this->options[$i]['option_slug'],
                                    'type'      => $this->options[$i]['type'],
                                    'choices'    => $this->options[$i]['choices'],
-                                   'htmlclass' => $this->options[$i]['htmlclass']
+                                   'htmlclass' => $this->options[$i]['htmlclass'],
+                                   'description' => $this->options[$i]['description']
              ));
       }
     }
@@ -85,6 +86,7 @@ class OptionsPage {
     	$type    = $args['type'];
       $class   = $args['htmlclass'];
       $choices = $args['choices'];
+      $description = $args['description'];
 
     	$value   = get_option( $setting );
 
@@ -96,25 +98,23 @@ class OptionsPage {
         case 'radio':
         case 'checkbox':
               for( $i=0; $i<sizeof($choices); $i++) {
-                $checked = '';
-                if ( $value === $choices[$i] ) {
-                  $checked = 'checked';
-                }
                 echo '<input id="' .    $setting .'-option-' . $i . '"
                              class="' . $class . '"
                              type="' .  $type . '"
                              name="' .  $setting . '"
                              value="' . $choices[$i] . '"
-                             ' .        $checked . '  />';
+                             ' .        ( $value === $choices[$i] ? 'checked' : '') . '  />';
               }
-              break;
+        echo $description;
+        break;
 
         /*
         *     Sortable list field
         */
         case 'sortable':
               //Sortable
-              break;
+        echo $description;
+        break;
 
         /*
         *     Default (text, date, color etc. )
@@ -125,7 +125,8 @@ class OptionsPage {
                      type="' .    $type . '"
                      name="' .    $setting . '"
                      value="' .   $value . '" />';
-              break;
+        echo '<span class="asdf-option-description">' . $description . '</span>';
+        break;
         }
       }
 

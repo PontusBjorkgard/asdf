@@ -34,7 +34,7 @@ $navigation->options[] = array(
 );
 
 $navigation->options[] = array(
-  'option_name'     => 'List test',
+  'option_name'     => 'Microwidgets',
   'option_slug'     => 'list-test',
 	'option_section'  => 'layout',
 	'type'            => 'sortable',
@@ -42,6 +42,32 @@ $navigation->options[] = array(
 );
 
 
+/*
+*     Layout options page
+*/
+
+$posttypes = array( 'post' );
+foreach ( get_post_types( array('_builtin' => false) ) as $post_type) {
+  $posttypes[] = $post_type;
+}
+$layoutPage = new Subpage( $page, array(
+  'name'        => 'Layout Settings',
+  'menu-name'   => 'Layout',
+  'slug'        => 'asdf-admin-layout',
+  'sections'    => $posttypes
+));
+
+$layoutPage->options[] = array(
+  'option_name'     => 'Number of columns',
+  'option_slug'     => 'post-column-quantity',
+  'option_section'  => 'post',
+  'type'            => 'range',
+  'htmlclass'       => 'asdf-range',
+  'description'     => 'Number of columns per row'
+);
+
+
 
 $page->hook_create_settings();
 $navigation->hook_create_settings();
+$layoutPage->hook_create_settings();
