@@ -65,7 +65,7 @@ class OptionsPage {
 
         add_settings_field( $this->options[$i]['option_slug'],
                             $this->options[$i]['option_name'],
-                            [$this, 'pampas_render_fields_function'],
+                            [$this, 'asdf_render_fields'],
                             $this->pageProperties['slug'],
                             $this->options[$i]['option_section'],
                             array( 'setting'   => $this->options[$i]['option_slug'],
@@ -79,7 +79,7 @@ class OptionsPage {
       add_action( 'admin_init', [$this, 'create_settings'] );
     }
 
-    public function pampas_render_fields_function( $args ) {
+    public function asdf_render_fields( $args ) {
 
     	$setting = $args['setting'];
     	$type    = $args['type'];
@@ -88,29 +88,50 @@ class OptionsPage {
 
     	$value   = get_option( $setting );
 
-      if( $type == 'radio' || $type == 'checkbox' ) {
-        for( $i=0; $i<sizeof($choices); $i++) {
-          $checked = '';
-          if ( $value === $choices[$i] ) {
-            $checked = 'checked';
-          }
-          echo '<input id="' .    $setting .'-option-' . $i . '"
-                       class="' . $class . '"
-                       type="' .  $type . '"
-                       name="' .  $setting . '"
-                       value="' . $choices[$i] . '"
-                       ' .        $checked . '  />';
-        }
-      }
-      else {
+      switch( $type ) {
+
+        /*
+        *     Radio checkbox fields
+        */
+        case 'radio':
+        case 'checkbox':
+              for( $i=0; $i<sizeof($choices); $i++) {
+                $checked = '';
+                if ( $value === $choices[$i] ) {
+                  $checked = 'checked';
+                }
+                echo '<input id="' .    $setting .'-option-' . $i . '"
+                             class="' . $class . '"
+                             type="' .  $type . '"
+                             name="' .  $setting . '"
+                             value="' . $choices[$i] . '"
+                             ' .        $checked . '  />';
+              }
+              break;
+
+        /*
+        *     Sortable list field
+        */
+        case 'sortable':
+              //Sortable
+              break;
+
+        /*
+        *     Default (text, date, color etc. )
+        */
+        default:
         echo '<input id="' .      $setting . '"
                      class="' .   $class . '"
                      type="' .    $type . '"
                      name="' .    $setting . '"
                      value="' .   $value . '" />';
+              break;
+        }
       }
 
-    }
+
+
+
 
 
 

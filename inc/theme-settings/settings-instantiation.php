@@ -33,6 +33,14 @@ $navigation->options[] = array(
 	'choices'          => array( 'navigation-horizontal', 'navigation-vertical' )
 );
 
+$navigation->options[] = array(
+  'option_name'     => 'List test',
+  'option_slug'     => 'list-test',
+	'option_section'  => 'layout',
+	'type'            => 'sortable',
+  'htmlclass'       => 'asdf-option-radio big',
+);
+
 
 
 $page->hook_create_settings();
