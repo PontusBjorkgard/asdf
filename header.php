@@ -45,3 +45,4 @@
 	</header> <!-- #masthead -->
 
 	<div id="content" <?php asdf_container_class(); ?>>
+		<div class="row">
