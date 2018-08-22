@@ -61,8 +61,8 @@ $layoutPage->options[] = array(
   'option_name'     => 'Number of columns',
   'option_slug'     => 'post-column-quantity',
   'option_section'  => 'post',
-  'type'            => 'range',
-  'htmlclass'       => 'asdf-range',
+  'type'            => 'number',
+  'htmlclass'       => 'asdf-number',
   'description'     => 'Number of columns per row'
 );
 
