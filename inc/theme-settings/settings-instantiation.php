@@ -58,6 +58,17 @@ $layoutPage = new Subpage( $page, array(
 ));
 
 $layoutPage->options[] = array(
+  'option_name'     => 'Container width',
+  'option_slug'     => 'post-container-width',
+  'option_section'  => 'post',
+  'type'            => 'radio',
+  'htmlclass'       => 'asdf-radio',
+  'description'     => 'Width of the main container',
+  'choices'         =>  array( 'container', 'container-fluid' ),
+  'choices_labels'   =>  array( 'Normal', 'Fullwdidth' )
+);
+
+$layoutPage->options[] = array(
   'option_name'     => 'Number of columns',
   'option_slug'     => 'post-column-quantity',
   'option_section'  => 'post',

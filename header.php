@@ -44,4 +44,4 @@
 
 	</header> <!-- #masthead -->
 
-	<div id="content" class="site-content">
+	<div id="content" <?php asdf_container_class(); ?>>
