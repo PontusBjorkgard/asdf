@@ -54,7 +54,7 @@ $layoutPage = new Subpage( $page, array(
   'name'        => 'Layout Settings',
   'menu-name'   => 'Layout',
   'slug'        => 'asdf-admin-layout',
-  'sections'    => $posttypes
+  'sections'    =>  $posttypes
 ));
 
 $layoutPage->options[] = array(
@@ -64,7 +64,8 @@ $layoutPage->options[] = array(
   'type'            => 'select',
   'htmlclass'       => 'asdf-number',
   'description'     => 'Number of columns per row',
-  'choices'          => array( 'col-12', 'col-6', 'col-4' )
+  'choices'         =>  array( 'col-12', 'col-6', 'col-4' ),
+  'choices_labels'   =>  array( '1', '2', '3' )
 );
 
 

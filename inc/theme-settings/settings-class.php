@@ -71,6 +71,7 @@ class OptionsPage {
                             array( 'setting'   => $this->options[$i]['option_slug'],
                                    'type'      => $this->options[$i]['type'],
                                    'choices'    => $this->options[$i]['choices'],
+                                   'labels'     => $this->options[$i]['choices_labels'],
                                    'htmlclass' => $this->options[$i]['htmlclass'],
                                    'description' => $this->options[$i]['description']
              ));
@@ -86,6 +87,7 @@ class OptionsPage {
     	$type    = $args['type'];
       $class   = $args['htmlclass'];
       $choices = $args['choices'];
+      $labels  = $args['labels'];
       $description = $args['description'];
 
     	$value   = get_option( $setting );
@@ -114,7 +116,7 @@ class OptionsPage {
         case 'select':
               echo '<select name="' . $setting . '">';
               for( $i=0; $i<sizeof($choices); $i++) {
-                echo '<option value="' . $choices[$i] . '">' . $choices[$i] . '</option>';
+                echo '<option value="' . $choices[$i] . '">' . $labels[$i] . '</option>';
               }
               echo '</select>';
         break;
