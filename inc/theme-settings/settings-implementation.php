@@ -23,7 +23,8 @@ add_filter( 'post_class', 'asdf_article_classes' );
 function asdf_article_classes( $classes ) {
 
   $post_type = get_post_type();
-  $classes[] = get_option( $post_type . '-col-quantity' );
+
+  $classes[] = get_option( $post_type . '-column-quantity' );
   return $classes;
 }
 

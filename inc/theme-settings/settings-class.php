@@ -109,6 +109,17 @@ class OptionsPage {
         break;
 
         /*
+        *     Select field
+        */
+        case 'select':
+              echo '<select name="' . $setting . '">';
+              for( $i=0; $i<sizeof($choices); $i++) {
+                echo '<option value="' . $choices[$i] . '">' . $choices[$i] . '</option>';
+              }
+              echo '</select>';
+        break;
+
+        /*
         *     Sortable list field
         */
         case 'sortable':
@@ -120,12 +131,12 @@ class OptionsPage {
         *     Default (text, date, color etc. )
         */
         default:
-        echo '<input id="' .      $setting . '"
-                     class="' .   $class . '"
-                     type="' .    $type . '"
-                     name="' .    $setting . '"
-                     value="' .   $value . '" />';
-        echo '<span class="asdf-option-description">' . $description . '</span>';
+              echo '<input id="' .      $setting . '"
+                           class="' .   $class . '"
+                           type="' .    $type . '"
+                           name="' .    $setting . '"
+                           value="' .   $value . '" />';
+              echo '<span class="asdf-option-description">' . $description . '</span>';
         break;
         }
       }
