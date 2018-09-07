@@ -44,7 +44,7 @@ class OptionsPage {
 
     public function create_settings_section() {
       for( $i = 0; $i < sizeof($this->pageProperties['sections']); $i++ ) {
-        add_settings_section( $this::slugify($this->pageProperties['sections'][$i]),
+        add_settings_section( sanitize_title($this->pageProperties['sections'][$i]),
                               $this->pageProperties['sections'][$i],
                               [$this, 'section_callback_function'],
                               $this->pageProperties['slug'] );
@@ -52,7 +52,7 @@ class OptionsPage {
     }
 
 
-    public function section_callback_function() { }
+    public function section_callback_function() { echo "section_callback_function()";}
 
 
 
@@ -143,38 +143,6 @@ class OptionsPage {
         }
       }
 
-//test remve
-
-
-
-
-
-     public static function slugify($text) {
-    // replace non letter or digits by -
-    $text = preg_replace('~[^\pL\d]+~u', '-', $text);
-
-    // transliterate
-    $text = iconv('utf-8', 'us-ascii//TRANSLIT', $text);
-
-    // remove unwanted characters
-    $text = preg_replace('~[^-\w]+~', '', $text);
-
-    // trim
-    $text = trim($text, '-');
-
-    // remove duplicate -
-    $text = preg_replace('~-+~', '-', $text);
-
-    // lowercase
-    $text = strtolower($text);
-
-    if (empty($text)) {
-      return 'n-a';
-    }
-
-    return $text;
-  }
-
 
 
   }
@@ -199,4 +167,5 @@ class OptionsPage {
                           [$this, 'output_page'] );
                           add_action( 'admin_init', [$this, 'create_settings_section'] );
       }
+
   }
