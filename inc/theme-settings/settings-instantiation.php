@@ -30,6 +30,7 @@ add_action( 'init', function() {
       	'option_section'  => 'layout',
       	'type'            => 'radio',
         'htmlclass'       => 'asdf-option-radio big',
+        'description'     => 'Layout main navigfation',
       	'choices'          => array( 'navigation-horizontal', 'navigation-vertical' )
       );
 
@@ -39,6 +40,7 @@ add_action( 'init', function() {
       	'option_section'  => 'layout',
       	'type'            => 'sortable',
         'htmlclass'       => 'asdf-option-radio big',
+        'description'     => 'Microwidgets layout',
       );
 
 

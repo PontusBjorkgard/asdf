@@ -72,7 +72,7 @@ class OptionsPage {
                                    'type'      => $this->options[$i]['type'],
                                    'choices'    => $this->options[$i]['choices'],
                                    'labels'     => $this->options[$i]['choices_labels'],
-                                   'htmlclass' => $this->options[$i]['htmlclass'],
+                                   'htmlclass'  => $this->options[$i]['htmlclass'],
                                    'description' => $this->options[$i]['description']
              ));
       }
