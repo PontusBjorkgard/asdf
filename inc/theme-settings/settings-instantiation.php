@@ -96,6 +96,17 @@ add_action( 'init', function() {
               'choices'         =>  array( 'container', 'container-fluid' ),
               'choices_labels'   =>  array( 'Normal', 'Fullwdidth' )
             );
+
+            $layoutPage->options[] = array(
+                'option_name'     => $post_types[$i]->name.' activate sidebar',
+                'option_slug'     => $post_types[$i]->name.'-sidebar-active',
+                'option_section'  =>  $post_types[$i]->name,
+                'type'            => 'radio',
+                'htmlclass'       => 'asdf-radio',
+                'description'     => 'Activate sidebar?',
+                'choices'         =>  array( 'true', 'false' ),
+                'choices_labels'   =>  array( 'Sidebar', 'No sidebar' )
+              );
        }
 
 

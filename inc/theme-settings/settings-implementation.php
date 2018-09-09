@@ -68,3 +68,34 @@ if ( !function_exists( 'asdf_container_class' ) ):
      echo 'class="' . join(' ', $classes ) .'"';
   }
 endif;
+
+if (!function_exists( 'asdf_sidebar_active' ) ):
+
+  function asdf_sidebar_active( $area ) {
+    $post_type = get_post_type();
+
+    if ( get_option( $post_type . '-sidebar-active' ) == 'true' ) {
+      if ( $area == 'widget' ) {
+        echo 'class="widget-area col-3"';
+      }
+      elseif ( $area == 'primary' ) {
+        echo 'class="content-area col-9"';
+      }
+      else {
+        return;
+      }
+    }
+
+    elseif ( get_option( $post_type . '-sidebar-active' ) == 'false' ) {
+      if ( $area == 'widget' ) {
+        echo 'style="display:none;"';
+      }
+      elseif ( $area == 'primary' ) {
+        echo 'class="content-area col-12"';
+      }
+      else {
+        return;
+      }
+    }
+  }
+endif;

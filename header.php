@@ -46,3 +46,5 @@
 
 	<div id="content" <?php asdf_container_class(); ?>>
 		<div class="row">
+			<div id="primary" <?php asdf_sidebar_active( 'primary' ) ?> >
+				<main id="main" class="site-main">
