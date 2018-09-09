@@ -79,9 +79,14 @@ if ( ! function_exists( 'asdf_setup' ) ) :
 			'flex-width'  => true,
 			'flex-height' => true,
 		) );
+
 	}
+
+
 endif;
 add_action( 'after_setup_theme', 'asdf_setup' );
+
+
 
 /**
  * Set the content width in pixels, based on the theme's design and stylesheet.
@@ -132,6 +137,20 @@ function asdf_scripts() {
 	}
 }
 add_action( 'wp_enqueue_scripts', 'asdf_scripts' );
+
+
+/**
+*		Image  sizes
+*/
+
+add_action( 'after_setup_theme', 'asdf_image_sizes' );
+function asdf_image_sizes() {
+    add_image_size( 'asdf-thumb', 920 ); // 300 pixels wide (and unlimited height)
+    add_image_size( 'homepage-thumb', 220, 180, true ); // (cropped)
+}
+
+
+
 
 /**
  * Implement the Custom Header feature.

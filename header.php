@@ -44,6 +44,8 @@
 
 	</header> <!-- #masthead -->
 
+	<?php asdf_hero() ?>
+
 	<div id="content" <?php asdf_container_class(); ?>>
 		<div class="row">
 			<div id="primary" <?php asdf_sidebar_active( 'primary' ) ?> >
