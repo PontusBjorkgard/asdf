@@ -73,9 +73,22 @@ add_action( 'init', function() {
 
       // loop through $post_types to create a setting per post type and add to post type specific section
       for( $i = 0; $i < sizeof($post_types); $i++ ) {
+
+        // Container width for singles
+        $layoutPage->options[] = array(
+            'option_name'     => $post_types[$i]->name.' single container width',
+            'option_slug'     => $post_types[$i]->name.'single-container-width',
+            'option_section'  =>  $post_types[$i]->name,
+            'type'            => 'radio',
+            'htmlclass'       => 'asdf-radio',
+            'description'     => 'Width of the main container',
+            'choices'         =>  array( 'container', 'container-fluid' ),
+            'choices_labels'   =>  array( 'Normal', 'Fullwdidth' )
+          );
+
           $layoutPage->options[] = array(
-              'option_name'     => $post_types[$i]->name.' container width',
-              'option_slug'     => $post_types[$i]->name.'-container-width',
+              'option_name'     => $post_types[$i]->name.' archive container width',
+              'option_slug'     => $post_types[$i]->name.'archive-container-width',
               'option_section'  =>  $post_types[$i]->name,
               'type'            => 'radio',
               'htmlclass'       => 'asdf-radio',

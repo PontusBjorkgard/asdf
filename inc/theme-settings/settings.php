@@ -87,4 +87,4 @@ function media_selector_print_scripts() {
 			});
 		});
 	</script><?php
-}
+} */

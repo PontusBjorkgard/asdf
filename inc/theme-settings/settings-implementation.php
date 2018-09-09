@@ -43,9 +43,17 @@ function asdf_article_classes( $classes ) {
 add_filter( 'container_class', 'asdf_container_classes' );
 function asdf_container_classes( $classes ) {
 
+  // Get the post type
   $post_type = get_post_type();
 
-  $classes[] = get_option( $post_type . '-container-width' );
+  // add classes based on settings. Different settings for single and archive
+  if ( is_single() ) {
+    $classes[] = get_option( $post_type . 'single-container-width' );
+  }
+  else {
+    $classes[] = get_option( $post_type . 'archive-container-width' );
+  }
+
   return $classes;
 }
 
