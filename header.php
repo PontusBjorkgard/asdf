@@ -44,9 +44,14 @@
 
 	</header> <!-- #masthead -->
 
-	<?php asdf_hero() ?>
 
-	<div id="content" <?php asdf_container_class(); ?>>
+	<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4"> <?php single_post_title(); ?></h1>
+  </div>
+</div>
+
+	<div id="content" class="<?php echo asdf_get_option( 'container-width' ) ?>">
 		<div class="row">
-			<div id="primary" <?php asdf_sidebar_active( 'primary' ) ?> >
+			<div id="primary" class="col">
 				<main id="main" class="site-main">

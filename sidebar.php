@@ -10,8 +10,10 @@
 if ( ! is_active_sidebar( 'sidebar-1' ) ) {
 	return;
 }
-?>
 
-<aside id="secondary" <?php asdf_sidebar_active( 'widget' ) ?>>
+if ( asdf_get_option( 'sidebar-active' ) == 'true' ):
+?>
+<aside id="secondary" class="col-3">
 	<?php dynamic_sidebar( 'sidebar-1' ); ?>
 </aside><!-- #secondary -->
+<?php endif; ?>

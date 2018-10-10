@@ -121,13 +121,6 @@ class OptionsPage {
               echo '</select>';
         break;
 
-        /*
-        *     Sortable list field
-        */
-        case 'sortable':
-              //Sortable
-        echo $description;
-        break;
 
         /*
         *     Default (text, date, color etc. )

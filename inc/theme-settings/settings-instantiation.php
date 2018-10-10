@@ -34,14 +34,6 @@ add_action( 'init', function() {
       	'choices'          => array( 'navigation-horizontal', 'navigation-vertical' )
       );
 
-      $navigation->options[] = array(
-        'option_name'     => 'Microwidgets',
-        'option_slug'     => 'list-test',
-      	'option_section'  => 'layout',
-      	'type'            => 'sortable',
-        'htmlclass'       => 'asdf-option-radio big',
-        'description'     => 'Microwidgets layout',
-      );
 
 
       /*
@@ -76,10 +68,10 @@ add_action( 'init', function() {
       // loop through $post_types to create a setting per post type and add to post type specific section
       for( $i = 0; $i < sizeof($post_types); $i++ ) {
 
-        // Container width for singles
+        // SINGLE
         $layoutPage->options[] = array(
             'option_name'     => $post_types[$i]->name.' single container width',
-            'option_slug'     => $post_types[$i]->name.'single-container-width',
+            'option_slug'     => $post_types[$i]->name.'-single-container-width',
             'option_section'  =>  $post_types[$i]->name,
             'type'            => 'radio',
             'htmlclass'       => 'asdf-radio',
@@ -88,20 +80,10 @@ add_action( 'init', function() {
             'choices_labels'   =>  array( 'Normal', 'Fullwdidth' )
           );
 
-          $layoutPage->options[] = array(
-              'option_name'     => $post_types[$i]->name.' archive container width',
-              'option_slug'     => $post_types[$i]->name.'archive-container-width',
-              'option_section'  =>  $post_types[$i]->name,
-              'type'            => 'radio',
-              'htmlclass'       => 'asdf-radio',
-              'description'     => 'Width of the main container',
-              'choices'         =>  array( 'container', 'container-fluid' ),
-              'choices_labels'   =>  array( 'Normal', 'Fullwdidth' )
-            );
 
             $layoutPage->options[] = array(
-                'option_name'     => $post_types[$i]->name.' activate sidebar',
-                'option_slug'     => $post_types[$i]->name.'-sidebar-active',
+                'option_name'     => $post_types[$i]->name.' single activate sidebar',
+                'option_slug'     => $post_types[$i]->name.'-single-sidebar-active',
                 'option_section'  =>  $post_types[$i]->name,
                 'type'            => 'radio',
                 'htmlclass'       => 'asdf-radio',
@@ -109,6 +91,40 @@ add_action( 'init', function() {
                 'choices'         =>  array( 'true', 'false' ),
                 'choices_labels'   =>  array( 'Sidebar', 'No sidebar' )
               );
+
+              //Archive
+              $layoutPage->options[] = array(
+                  'option_name'     => $post_types[$i]->name.' archive container width',
+                  'option_slug'     => $post_types[$i]->name.'-archive-container-width',
+                  'option_section'  =>  $post_types[$i]->name,
+                  'type'            => 'radio',
+                  'htmlclass'       => 'asdf-radio',
+                  'description'     => 'Width of the main container',
+                  'choices'         =>  array( 'container', 'container-fluid' ),
+                  'choices_labels'   =>  array( 'Normal', 'Fullwdidth' )
+                );
+
+            $layoutPage->options[] = array(
+                'option_name'     => $post_types[$i]->name.' archive activate sidebar',
+                'option_slug'     => $post_types[$i]->name.'-archive-sidebar-active',
+                'option_section'  =>  $post_types[$i]->name,
+                'type'            => 'radio',
+                'htmlclass'       => 'asdf-radio',
+                'description'     => 'Activate sidebar?',
+                'choices'         =>  array( 'true', 'false' ),
+                'choices_labels'   =>  array( 'Sidebar', 'No sidebar' )
+                );
+
+                $layoutPage->options[] = array(
+                  'option_name'     => $post_types[$i]->name.' number of columns',
+                  'option_slug'     => $post_types[$i]->name.'-archive-column-quantity',
+                  'option_section'  => $post_types[$i]->name,
+                  'type'            => 'select',
+                  'htmlclass'       => 'asdf-number',
+                  'description'     => 'Number of columns per row',
+                  'choices'         =>  array( 'col-12', 'col-6', 'col-4' ),
+                  'choices_labels'   =>  array( '1', '2', '3' )
+                );
        }
 
 
@@ -125,16 +141,7 @@ add_action( 'init', function() {
           'choices_labels'   =>  array( 'Normal', 'Fullwdidth' )
         );
 
-        $layoutPage->options[] = array(
-          'option_name'     => 'Number of columns',
-          'option_slug'     => $posttype.'-column-quantity',
-          'option_section'  => $posttype,
-          'type'            => 'select',
-          'htmlclass'       => 'asdf-number',
-          'description'     => 'Number of columns per row',
-          'choices'         =>  array( 'col-12', 'col-6', 'col-4' ),
-          'choices_labels'   =>  array( '1', '2', '3' )
-        );*/
+        */
 
 
 //dddd
