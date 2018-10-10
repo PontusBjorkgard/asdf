@@ -41,7 +41,6 @@
 			?>
 		</nav> <!-- #main-navigation -->
 
-
 	</header> <!-- #masthead -->
 
 
