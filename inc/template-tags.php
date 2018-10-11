@@ -30,7 +30,7 @@ if ( ! function_exists( 'asdf_posted_on' ) ) :
 			esc_attr( get_the_modified_date( DATE_W3C ) ),
 			esc_html( get_the_modified_date() )
 		);
-		echo '<span class="posted-on">' . $time_string . '</span>'; // WPCS: XSS OK.
+		echo '<span class="posted-on text-sm">' . $time_string . '</span>'; // WPCS: XSS OK.
 	}
 endif;
 
@@ -43,11 +43,11 @@ if ( ! function_exists( 'asdf_posted_by' ) ) :
 	 */
 	function asdf_posted_by() {
 		$byline = sprintf(
-			esc_html_x( 'by %s', 'post author', 'asdf' ),
-			'<span class="author vcard"><a class="url fn n" href="' . esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ) . '">' . esc_html( get_the_author() ) . '</a></span>'
+			esc_html_x( '%s', 'post author', 'asdf' ),
+			'<span class="author vcard text-sm"><a class="url fn n" href="' . esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ) . '">' . esc_html( get_the_author() ) . '</a></span>'
 		);
 
-		echo '<span class="byline"> ' . $byline . '</span>'; // WPCS: XSS OK.
+		echo '<span class="posted-by"> ' . $byline . '</span>'; // WPCS: XSS OK.
 
 	}
 endif;
@@ -58,15 +58,15 @@ function asdf_posted_in( $type = '' ) {
 	if ( 'page' !== get_post_type() ) {
 
 		if ( $type === 'tags') {
-			$tags_list = get_the_tag_list();
+			$tags_list = get_the_tag_list('', '</span><span class="asdf-cat-badge btn btn-info btn-sm">');
 			if ( $tags_list ) {
-				echo $tags_list;
+				echo '<span class="asdf-cat-badge btn btn-info btn-sm">' . $tags_list . '</span>';
 			}
 		}
 		else {
-			$categories_list = get_the_category_list();
+			$categories_list = get_the_category_list('</span><span class="asdf-cat-badge btn btn-info btn-sm">');
 			if ( $categories_list ) {
-				echo $categories_list;
+				echo '<span class="asdf-cat-badge btn btn-info btn-sm">' . $categories_list . '</span>';
 			}
 		}
 	}
@@ -102,35 +102,22 @@ if ( ! function_exists( 'asdf_the_content' ) ) :
 		}
 endif;
 
-
-
-// Entry footer
-if ( ! function_exists( 'asdf_entry_footer' ) ) :
-	/**
-	 * Prints HTML with meta information for the categories, tags and comments.
-	 */
-	function asdf_entry_footer() {
-		// Hide category and tag text for pages.
-
-
+//comment
+if ( ! function_exists( 'asdf_comment_on' ) ) :
+	function asdf_comment_on() {
 		if ( ! is_single() && ! post_password_required() && ( comments_open() || get_comments_number() ) ) {
-			echo '<span class="comments-link">';
-			comments_popup_link(
-				sprintf(
-					wp_kses(
-						/* translators: %s: post title */
-						__( 'Leave a Comment<span class="screen-reader-text"> on %s</span>', 'asdf' ),
-						array(
-							'span' => array(
-								'class' => array(),
-							),
-						)
-					),
-					get_the_title()
-				)
-			);
+			echo '<span class="comments-link text-sm">';
+			echo comments_popup_link('<i class="fas fa-comments"></i>', '<i class="fas fa-comments"></i>', '<i class="fas fa-comments"></i>');
 			echo '</span>';
 		}
+	}
+endif;
+
+// Edit post
+if ( ! function_exists( 'asdf_entry_footer' ) ) :
+
+	function asdf_entry_footer() {
+
 
 		edit_post_link(
 			sprintf(
@@ -170,7 +157,7 @@ if ( ! function_exists( 'asdf_post_thumbnail' ) ) :
 
 		<?php else : ?>
 
-		<a class="post-thumbnail" href="<?php the_permalink(); ?>" aria-hidden="true" tabindex="-1">
+		<a class="post-thumbnail view overlay" href="<?php the_permalink(); ?>" aria-hidden="true" tabindex="-1">
 			<?php
 			the_post_thumbnail( 'asdf-thumbnail', array(
 				'alt' => the_title_attribute( array(

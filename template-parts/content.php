@@ -12,11 +12,19 @@
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
 
-	<?php asdf_post_thumbnail(); ?>
+	<?php
+	asdf_post_thumbnail(); ?>
 
 	<header class="entry-header">
+		<div>
+			<?php
+			asdf_posted_on();
+			asdf_posted_by();
+			asdf_comment_on();
+			 ?>
+		 </div>
 		<?php
-		asdf_posted_by();
+
 		if ( is_singular() ) :
 			the_title( '<h1 class="entry-title">', '</h1>' );
 		else :
@@ -29,7 +37,6 @@
 	<div class="entry-meta">
 		<?php
 		asdf_posted_in();
-		asdf_posted_on();
 		?>
 	</div><!-- .entry-meta -->
 
@@ -45,7 +52,10 @@
 	</div><!-- .entry-content -->
 
 	<footer class="entry-footer">
-		<?php asdf_posted_in('tags'); ?>
+		<div class="asdf-tags">
+			<?php// asdf_posted_in('tags'); ?>
+		</div>
+
 		<?php asdf_entry_footer(); ?>
 	</footer><!-- .entry-footer -->
 </article><!-- #post-<?php the_ID(); ?> -->

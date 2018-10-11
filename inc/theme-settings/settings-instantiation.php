@@ -59,13 +59,20 @@ add_action( 'init', function() {
 
       // init Layoutpage with a section per post type
       $layoutPage = new Subpage( $page, array(
-        'name'        => 'Layout Settings',
-        'menu-name'   => 'Layout',
-        'slug'        => 'asdf-admin-layout',
+        'name'        => 'Single Layout Settings',
+        'menu-name'   => 'Single Layout',
+        'slug'        => 'asdf-single-layout',
         'sections'    =>  $sections
       ));
 
-      
+      $archive_layout_page = new Subpage( $page, array(
+        'name'        => 'Archive Layout Settings',
+        'menu-name'   => 'Archive Layout',
+        'slug'        => 'asdf-archive-layout',
+        'sections'    =>  $sections
+      ));
+
+
 
       // loop through $post_types to create a setting per post type and add to post type specific section
       for( $i = 0; $i < sizeof($post_types); $i++ ) {
@@ -92,10 +99,22 @@ add_action( 'init', function() {
                 'description'     => 'Activate sidebar?',
                 'choices'         =>  array( 'true', 'false' ),
                 'choices_labels'   =>  array( 'Sidebar', 'No sidebar' )
-              );
+            );
 
-              //Archive
-              $layoutPage->options[] = array(
+            $layoutPage->options[] = array(
+                'option_name'     => $post_types[$i]->name.' single header',
+                'option_slug'     => $post_types[$i]->name.'-single-header-style',
+                'option_section'  =>  $post_types[$i]->name,
+                'type'            => 'radio',
+                'htmlclass'       => 'asdf-radio',
+                'description'     => 'Header style',
+                'choices'         =>  array( 'featured-img', 'none' ),
+                'choices_labels'   =>  array( 'Featured image', 'No header' )
+            );
+
+
+              //ARCHIVE
+            $archive_layout_page->options[] = array(
                   'option_name'     => $post_types[$i]->name.' archive container width',
                   'option_slug'     => $post_types[$i]->name.'-archive-container-width',
                   'option_section'  =>  $post_types[$i]->name,
@@ -106,7 +125,7 @@ add_action( 'init', function() {
                   'choices_labels'   =>  array( 'Normal', 'Fullwdidth' )
                 );
 
-            $layoutPage->options[] = array(
+          $archive_layout_page->options[] = array(
                 'option_name'     => $post_types[$i]->name.' archive activate sidebar',
                 'option_slug'     => $post_types[$i]->name.'-archive-sidebar-active',
                 'option_section'  =>  $post_types[$i]->name,
@@ -117,7 +136,7 @@ add_action( 'init', function() {
                 'choices_labels'   =>  array( 'Sidebar', 'No sidebar' )
                 );
 
-                $layoutPage->options[] = array(
+              $archive_layout_page->options[] = array(
                   'option_name'     => $post_types[$i]->name.' number of columns',
                   'option_slug'     => $post_types[$i]->name.'-archive-column-quantity',
                   'option_section'  => $post_types[$i]->name,
@@ -127,7 +146,7 @@ add_action( 'init', function() {
                   'choices'         =>  array( 'col-12', 'col-6', 'col-4' ),
                   'choices_labels'   =>  array( '1', '2', '3' )
                 );
-       }
+          }
 
 
 
@@ -151,4 +170,5 @@ add_action( 'init', function() {
       $page->hook_create_settings();
       $navigation->hook_create_settings();
       $layoutPage->hook_create_settings();
+      $archive_layout_page->hook_create_settings();
 });

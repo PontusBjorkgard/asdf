@@ -1,12 +1,19 @@
 
 article {
-  ul.post-categories {
-    list-style: none;
-    padding: 0;
-    display: flex;
-
-    li {
-      margin-right: 12px;
+  .asdf-cat-badge {
+    margin: 0px 5px 5px 0px;
+    a {
+      color: white;
+      text-decoration: none;
     }
+  }
+
+  //Post info
+  .posted-by, .posted-on {
+    margin-right: 1rem;
+  }
+  .posted-by::before {
+    content: "\f007";
+    font-family: "Font Awesome 5 Free"; font-weight: 900;
   }
 }
