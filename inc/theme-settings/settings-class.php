@@ -121,6 +121,9 @@ class OptionsPage {
               echo '</select>';
         break;
 
+        case 'media':
+          arthur_image_uploader( $setting );
+        break;
 
         /*
         *     Default (text, date, color etc. )

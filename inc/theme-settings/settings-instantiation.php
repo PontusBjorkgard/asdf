@@ -108,8 +108,17 @@ add_action( 'init', function() {
                 'type'            => 'radio',
                 'htmlclass'       => 'asdf-radio',
                 'description'     => 'Header style',
-                'choices'         =>  array( 'featured-img', 'none' ),
-                'choices_labels'   =>  array( 'Featured image', 'No header' )
+                'choices'         =>  array( 'featured-img', 'custom-img', 'none' ),
+                'choices_labels'   =>  array( 'Featured image', 'Custom image', 'No header' )
+            );
+            $layoutPage->options[] = array(
+                'option_name'     => $post_types[$i]->name.' single header image',
+                'option_slug'     => $post_types[$i]->name.'-single-header-custom',
+                'option_section'  =>  $post_types[$i]->name,
+                'type'            => 'media',
+                'htmlclass'       => 'asdf-radio',
+                'description'     => 'Header style',
+                
             );
 
 
