@@ -65,6 +65,8 @@ add_action( 'init', function() {
         'sections'    =>  $sections
       ));
 
+      
+
       // loop through $post_types to create a setting per post type and add to post type specific section
       for( $i = 0; $i < sizeof($post_types); $i++ ) {
 

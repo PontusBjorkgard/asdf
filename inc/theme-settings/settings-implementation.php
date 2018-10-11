@@ -29,7 +29,7 @@ add_filter( 'post_class', 'asdf_article_classes' );
 function asdf_article_classes( $classes ) {
 
   $classes[] = asdf_get_option( 'column-quantity' );
-  
+
   return $classes;
 }
 
@@ -37,7 +37,7 @@ function asdf_article_classes( $classes ) {
 *  Returns archive if archive and single if single
 */
 function get_view() {
-  if ( is_archive() ) { return 'archive'; }
+  if ( is_archive() || is_home() ) { return 'archive'; }
   else                { return 'single';  }
 }
 

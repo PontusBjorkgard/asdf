@@ -1,0 +1,12 @@
+
+article {
+  ul.post-categories {
+    list-style: none;
+    padding: 0;
+    display: flex;
+
+    li {
+      margin-right: 12px;
+    }
+  }
+}

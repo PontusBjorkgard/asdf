@@ -1,4 +1,4 @@
-/*!
+﻿/*!
 Theme Name: asdf
 Theme URI: http://underscores.me/
 Author: Pontus Björkgård
@@ -18,32 +18,4 @@ Underscores is distributed under the terms of the GNU GPL v2 or later.
 
 Normalizing styles have been helped along thanks to the fine work of
 Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
-*/
-
-/*--------------------------------------------------------------
->>> TABLE OF CONTENTS:
-----------------------------------------------------------------
-# Normalize
-# Typography
-# Elements
-# Forms
-# Navigation
-	## Links
-	## Menus
-# Accessibility
-# Alignments
-# Clearings
-# Widgets
-# Content
-	## Posts and pages
-	## Comments
-# Infinite scroll
-# Media
-	## Captions
-	## Galleries
---------------------------------------------------------------*/
-
-
-@import "elements/navigation";
-@import "elements/images";
-@import "elements/posts";
+*/ul#primary-menu{display:flex;list-style:none}ul#primary-menu li:not(last-child){padding-right:12px}.navigation-vertical #main-navigation>*{width:100%}.navigation-vertical #main-navigation .navbar-brand{text-align:center}.navigation-vertical #main-navigation #primary-menu{justify-content:center}img{max-width:100%;height:auto}article ul.post-categories{list-style:none;padding:0;display:flex}article ul.post-categories li{margin-right:12px}

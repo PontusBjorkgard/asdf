@@ -22,3 +22,16 @@ function asdf_pingback_header() {
 	}
 }
 add_action( 'wp_head', 'asdf_pingback_header' );
+
+
+// Filters
+
+//readmore btn
+function asdf_excerpt_more( $more ) {
+    return '<div class="readmore">
+								<a href="' . get_permalink( get_the_ID()) . '" class="btn btn-primary">'
+										. __('Read More', 'asdf') .
+								'</a>
+						</div>';
+}
+add_filter( 'excerpt_more', 'asdf_excerpt_more' );

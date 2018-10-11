@@ -26,31 +26,31 @@
 
 	<header id="masthead" class="site-header">
 		<nav id="main-navigation" class="navbar navbar-light bg-light main-navigation"> <!-- Bootstrap nav container Start -->
+
 			<a class="navbar-brand" href="<?php echo esc_url( home_url( '/' ) ); ?>">
-				<?php
-				$custom_logo_id = get_theme_mod( 'custom_logo' );
-				$image = wp_get_attachment_image_src( $custom_logo_id , 'full' );
-				?>
-				<img src="<?php echo $image[0]; ?>" height="100">
+					<?php
+					$custom_logo_id = get_theme_mod( 'custom_logo' );
+					$image = wp_get_attachment_image_src( $custom_logo_id , 'asdf-logo' );
+					?>
+					<img src="<?php echo $image[0]; ?>" height="100">
 			</a>
+
 			<?php
-				wp_nav_menu( array(
+			wp_nav_menu( array(
 					'theme_location' => 'menu-1',
 					'menu_id'        => 'primary-menu',
-				));
+			));
 			?>
-		</nav> <!-- #main-navigation -->
 
+		</nav> <!-- #main-navigation -->
 	</header> <!-- #masthead -->
 
-
-	<div class="jumbotron jumbotron-fluid">
-  <div class="container">
-    <h1 class="display-4"> <?php single_post_title(); ?></h1>
-  </div>
-</div>
+	<?php
+	//banner
+	get_template_part( 'template-parts/banner' );
+	?>
 
 	<div id="content" class="<?php echo asdf_get_option( 'container-width' ) ?>">
 		<div class="row">
 			<div id="primary" class="col">
-				<main id="main" class="site-main">
+				<main id="main" class="site-main row">

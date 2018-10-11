@@ -13,8 +13,11 @@
 		</div><!-- .row -->
 	</div><!-- #content -->
 
-	<footer id="colophon" class="site-footer">
-		<div class="site-info">
+	<footer id="colophon" class="site-footer container-fluid">
+		<div class="footer-widgets row">
+			<?php dynamic_sidebar( 'footer' ); ?>
+		</div> <!-- footer-widgets -->
+		<div class="footer-branding">
 			<a href="<?php echo esc_url( __( 'https://wordpress.org/', 'asdf' ) ); ?>">
 				<?php
 				/* translators: %s: CMS name, i.e. WordPress. */
