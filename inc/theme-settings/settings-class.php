@@ -95,10 +95,9 @@ class OptionsPage {
       switch( $type ) {
 
         /*
-        *     Radio checkbox fields
+        *     Radio  fields
         */
         case 'radio':
-        case 'checkbox':
               for( $i=0; $i<sizeof($choices); $i++) {
                 echo '<label>
                       <input id="' .    $setting .'-option-' . $i . '"
@@ -114,6 +113,22 @@ class OptionsPage {
         break;
 
         /*
+        *   Checkboxes
+        */
+        case 'checkbox':
+                echo '<label>
+                      <input id="' .    $setting .'-option-' . $i . '"
+                             class="' . $class . '"
+                             type="' .  $type . '"
+                             name="' .  $setting . '"
+                             value="1"
+                             ' .        ( $value  ? 'checked' : '') . '  />
+                      <span class="asdf-radio-label">' . $labels[$i] . '</span>
+                      </label><br>';
+        echo '<p class="description" id="tagline-description">' . $description . '</p>';
+        break;
+
+        /*
         *     Select field
         */
         case 'select':
@@ -122,10 +137,12 @@ class OptionsPage {
                 echo '<option value="' . $choices[$i] . '">' . $labels[$i] . '</option>';
               }
               echo '</select>';
+        echo '<p class="description" id="tagline-description">' . $description . '</p>';
         break;
 
         case 'media':
           arthur_image_uploader( $setting );
+        echo '<p class="description" id="tagline-description">' . $description . '</p>';
         break;
 
         /*
@@ -137,7 +154,7 @@ class OptionsPage {
                            type="' .    $type . '"
                            name="' .    $setting . '"
                            value="' .   $value . '" />';
-              echo '<span class="asdf-option-description">' . $description . '</span>';
+        echo '<p class="description" id="tagline-description">' . $description . '</p>';
         break;
         }
       }

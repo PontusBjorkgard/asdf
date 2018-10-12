@@ -11,7 +11,7 @@ if ( ! is_active_sidebar( 'sidebar-1' ) ) {
 	return;
 }
 
-if ( asdf_get_option( 'sidebar-active' ) == 'true' ):
+if ( asdf_get_option( 'sidebar-active' ) ):
 ?>
 <aside id="secondary" class="col-3">
 	<?php dynamic_sidebar( 'sidebar-1' ); ?>

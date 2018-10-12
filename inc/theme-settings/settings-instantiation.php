@@ -94,11 +94,9 @@ add_action( 'init', function() {
                 'option_name'     => $post_types[$i]->name.' single activate sidebar',
                 'option_slug'     => $post_types[$i]->name.'-single-sidebar-active',
                 'option_section'  =>  $post_types[$i]->name,
-                'type'            => 'radio',
-                'htmlclass'       => 'asdf-radio',
+                'type'            => 'checkbox',
+                'htmlclass'       => 'asdf-checkbox',
                 'description'     => 'Activate sidebar?',
-                'choices'         =>  array( 'true', 'false' ),
-                'choices_labels'   =>  array( 'Sidebar', 'No sidebar' )
             );
 
             $layoutPage->options[] = array(
@@ -130,6 +128,7 @@ add_action( 'init', function() {
           );
 
 
+
               //ARCHIVE
             $archive_layout_page->options[] = array(
                   'option_name'     => $post_types[$i]->name.' archive container width',
@@ -142,15 +141,13 @@ add_action( 'init', function() {
                   'choices_labels'   =>  array( 'Normal', 'Fullwdidth' )
                 );
 
-          $archive_layout_page->options[] = array(
-                'option_name'     => $post_types[$i]->name.' archive activate sidebar',
-                'option_slug'     => $post_types[$i]->name.'-archive-sidebar-active',
-                'option_section'  =>  $post_types[$i]->name,
-                'type'            => 'radio',
-                'htmlclass'       => 'asdf-radio',
-                'description'     => 'Activate sidebar?',
-                'choices'         =>  array( 'true', 'false' ),
-                'choices_labels'   =>  array( 'Sidebar', 'No sidebar' )
+            $archive_layout_page->options[] = array(
+                    'option_name'     => $post_types[$i]->name.' archive activate sidebar',
+                    'option_slug'     => $post_types[$i]->name.'-archive-sidebar-active',
+                    'option_section'  =>  $post_types[$i]->name,
+                    'type'            => 'checkbox',
+                    'htmlclass'       => 'asdf-checkbox',
+                    'description'     => 'Activate sidebar?',
                 );
 
               $archive_layout_page->options[] = array(
@@ -163,6 +160,34 @@ add_action( 'init', function() {
                   'choices'         =>  array( 'col-12', 'col-6', 'col-4' ),
                   'choices_labels'   =>  array( '1', '2', '3' )
                 );
+
+                $archive_layout_page->options[] = array(
+                    'option_name'     => $post_types[$i]->name.' archive header',
+                    'option_slug'     => $post_types[$i]->name.'-archive-header-style',
+                    'option_section'  =>  $post_types[$i]->name,
+                    'type'            => 'radio',
+                    'htmlclass'       => 'asdf-radio',
+                    'description'     => 'Header style',
+                    'choices'         =>  array( 'featured-img', 'custom-img', 'none' ),
+                    'choices_labels'   =>  array( 'Featured image', 'Custom image', 'No header' )
+                );
+                          $archive_layout_page->options[] = array(
+                              'option_name'     => $post_types[$i]->name.' archive header image',
+                              'option_slug'     => $post_types[$i]->name.'-archive-header-custom',
+                              'option_section'  =>  $post_types[$i]->name,
+                              'type'            => 'media',
+                              'htmlclass'       => 'asdf-media',
+                              'description'     => 'Header style',
+                          );
+
+              $archive_layout_page->options[] = array(
+                    'option_name'     => $post_types[$i]->name.' archive header height',
+                    'option_slug'     => $post_types[$i]->name.'-archive-header-height',
+                    'option_section'  =>  $post_types[$i]->name,
+                    'type'            => 'text',
+                    'htmlclass'       => '',
+                    'description'     => 'Header height'
+              );
           }
 
 
