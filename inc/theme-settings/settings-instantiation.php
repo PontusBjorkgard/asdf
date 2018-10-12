@@ -44,7 +44,7 @@ add_action( 'init', function() {
       $post_types = array( get_post_type_object( 'post' ) );
 
       // Get custom post types as objects. Returns associative array
-      $custom_types = get_post_types( array( '_builtin' => false ), 'objects');
+      $custom_types = get_post_types( array( 'public' => true, '_builtin' => false ), 'objects');
 
       // Add $custom_types associative array to $post_types numeric array
       foreach ($custom_types as $type ) {

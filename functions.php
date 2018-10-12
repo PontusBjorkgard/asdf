@@ -135,6 +135,11 @@ require get_template_directory() . '/inc/customizer.php';
  */
 require get_template_directory() . '/inc/theme-settings/settings.php';
 
+/**
+ * Customizer
+ */
+require get_template_directory() . '/inc/theme-customizer/customizer.php';
+
 
 /**
  * Load Jetpack compatibility file.

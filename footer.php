@@ -17,7 +17,7 @@
 		<div class="footer-widgets row">
 			<?php dynamic_sidebar( 'footer' ); ?>
 		</div> <!-- footer-widgets -->
-		<div class="footer-branding">
+		<div class="footer-branding row">
 			<a href="<?php echo esc_url( __( 'https://wordpress.org/', 'asdf' ) ); ?>">
 				<?php
 				/* translators: %s: CMS name, i.e. WordPress. */

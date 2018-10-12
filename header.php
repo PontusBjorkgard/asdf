@@ -25,7 +25,7 @@
 	<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'asdf' ); ?></a>
 
 	<header id="masthead" class="site-header">
-		<nav id="main-navigation" class="navbar navbar-light bg-light main-navigation"> <!-- Bootstrap nav container Start -->
+		<nav id="main-navigation" class="navbar navbar-light main-navigation"> <!-- Bootstrap nav container Start -->
 
 			<a class="navbar-brand" href="<?php echo esc_url( home_url( '/' ) ); ?>">
 					<?php
@@ -34,13 +34,29 @@
 					?>
 					<img src="<?php echo $image[0]; ?>" height="100">
 			</a>
+			<div class="desktop-nav">
+				<?php
+						wp_nav_menu( array(
+								'theme_location' => 'menu-1',
+								'menu_id'        => 'primary-menu',
+						));
+				?>
+			</div>
+			<!-- mobile nav -->
 
-			<?php
-			wp_nav_menu( array(
-					'theme_location' => 'menu-1',
-					'menu_id'        => 'primary-menu',
-			));
-			?>
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+	    		<span class="navbar-toggler-icon"></span>
+	  		</button>
+				<div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+				<?php
+				wp_nav_menu( array(
+						'theme_location' => 'menu-1',
+						'menu_id'        => 'primary-menu',
+				));
+				?>
+			</div>
+
+
 
 		</nav> <!-- #main-navigation -->
 	</header> <!-- #masthead -->

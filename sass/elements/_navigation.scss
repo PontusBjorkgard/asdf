@@ -41,5 +41,16 @@ ul#primary-menu {
 }
 
 /*
-*   Different navigationbar
+*   responsive navbar
 */
+.desktop-nav {
+  display: none;
+}
+@media (min-width:800px) {
+  .navbar-toggler {
+    display: none;
+  }
+  .desktop-nav {
+    display: block;
+  }
+}

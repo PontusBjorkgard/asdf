@@ -12,7 +12,5 @@
     ?>
     <h1 class="display-3"> <?php single_post_title(); ?></h1>
 
-    <h1> <?php echo asdf_get_option('post-elements'); ?> </h1>
-
   </div>
 </div>
