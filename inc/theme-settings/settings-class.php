@@ -100,14 +100,17 @@ class OptionsPage {
         case 'radio':
         case 'checkbox':
               for( $i=0; $i<sizeof($choices); $i++) {
-                echo '<input id="' .    $setting .'-option-' . $i . '"
+                echo '<label>
+                      <input id="' .    $setting .'-option-' . $i . '"
                              class="' . $class . '"
                              type="' .  $type . '"
                              name="' .  $setting . '"
                              value="' . $choices[$i] . '"
-                             ' .        ( $value === $choices[$i] ? 'checked' : '') . '  />';
+                             ' .        ( $value === $choices[$i] ? 'checked' : '') . '  />
+                      <span class="asdf-radio-label">' . $labels[$i] . '</span>
+                      </label><br>';
               }
-        echo $description;
+        echo '<p class="description" id="tagline-description">' . $description . '</p>';
         break;
 
         /*

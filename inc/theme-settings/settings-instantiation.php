@@ -111,15 +111,23 @@ add_action( 'init', function() {
                 'choices'         =>  array( 'featured-img', 'custom-img', 'none' ),
                 'choices_labels'   =>  array( 'Featured image', 'Custom image', 'No header' )
             );
-            $layoutPage->options[] = array(
-                'option_name'     => $post_types[$i]->name.' single header image',
-                'option_slug'     => $post_types[$i]->name.'-single-header-custom',
+                      $layoutPage->options[] = array(
+                          'option_name'     => $post_types[$i]->name.' single header image',
+                          'option_slug'     => $post_types[$i]->name.'-single-header-custom',
+                          'option_section'  =>  $post_types[$i]->name,
+                          'type'            => 'media',
+                          'htmlclass'       => 'asdf-media',
+                          'description'     => 'Header style',
+                      );
+
+          $layoutPage->options[] = array(
+                'option_name'     => $post_types[$i]->name.' single header height',
+                'option_slug'     => $post_types[$i]->name.'-single-header-height',
                 'option_section'  =>  $post_types[$i]->name,
-                'type'            => 'media',
-                'htmlclass'       => 'asdf-radio',
-                'description'     => 'Header style',
-                
-            );
+                'type'            => 'text',
+                'htmlclass'       => '',
+                'description'     => 'Header height'
+          );
 
 
               //ARCHIVE
