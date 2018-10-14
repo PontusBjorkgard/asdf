@@ -99,33 +99,7 @@ add_action( 'init', function() {
                 'description'     => 'Activate sidebar?',
             );
 
-            $layoutPage->options[] = array(
-                'option_name'     => $post_types[$i]->name.' single header',
-                'option_slug'     => $post_types[$i]->name.'-single-header-style',
-                'option_section'  =>  $post_types[$i]->name,
-                'type'            => 'radio',
-                'htmlclass'       => 'asdf-radio',
-                'description'     => 'Header style',
-                'choices'         =>  array( 'featured-img', 'custom-img', 'none' ),
-                'choices_labels'   =>  array( 'Featured image', 'Custom image', 'No header' )
-            );
-                      $layoutPage->options[] = array(
-                          'option_name'     => $post_types[$i]->name.' single header image',
-                          'option_slug'     => $post_types[$i]->name.'-single-header-custom',
-                          'option_section'  =>  $post_types[$i]->name,
-                          'type'            => 'media',
-                          'htmlclass'       => 'asdf-media',
-                          'description'     => 'Header style',
-                      );
 
-          $layoutPage->options[] = array(
-                'option_name'     => $post_types[$i]->name.' single header height',
-                'option_slug'     => $post_types[$i]->name.'-single-header-height',
-                'option_section'  =>  $post_types[$i]->name,
-                'type'            => 'text',
-                'htmlclass'       => '',
-                'description'     => 'Header height'
-          );
 
 
 
@@ -161,33 +135,7 @@ add_action( 'init', function() {
                   'choices_labels'   =>  array( '1', '2', '3' )
                 );
 
-                $archive_layout_page->options[] = array(
-                    'option_name'     => $post_types[$i]->name.' archive header',
-                    'option_slug'     => $post_types[$i]->name.'-archive-header-style',
-                    'option_section'  =>  $post_types[$i]->name,
-                    'type'            => 'radio',
-                    'htmlclass'       => 'asdf-radio',
-                    'description'     => 'Header style',
-                    'choices'         =>  array( 'featured-img', 'custom-img', 'none' ),
-                    'choices_labels'   =>  array( 'Featured image', 'Custom image', 'No header' )
-                );
-                          $archive_layout_page->options[] = array(
-                              'option_name'     => $post_types[$i]->name.' archive header image',
-                              'option_slug'     => $post_types[$i]->name.'-archive-header-custom',
-                              'option_section'  =>  $post_types[$i]->name,
-                              'type'            => 'media',
-                              'htmlclass'       => 'asdf-media',
-                              'description'     => 'Header style',
-                          );
-
-              $archive_layout_page->options[] = array(
-                    'option_name'     => $post_types[$i]->name.' archive header height',
-                    'option_slug'     => $post_types[$i]->name.'-archive-header-height',
-                    'option_section'  =>  $post_types[$i]->name,
-                    'type'            => 'text',
-                    'htmlclass'       => '',
-                    'description'     => 'Header height'
-              );
+                
           }
 
 

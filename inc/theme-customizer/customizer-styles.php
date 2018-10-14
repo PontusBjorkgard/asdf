@@ -36,7 +36,7 @@ function asdf_customized_styles() {
   //Banner styles
   $banner_styles = array(
     'background-image'  => 'url(' . asdf_get_theme_mod( 'custom-banner' ) . ')',
-    'height'  => '40vh'
+    'min-height'  => '40vh'
   );
 
   $css = '<style type="text/css">';
