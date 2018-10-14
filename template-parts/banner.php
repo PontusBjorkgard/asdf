@@ -1,6 +1,6 @@
 
 
-<div class="jumbotron jumbotron-fluid" style="<?php asdf_banner_style(); ?>">
+<div class="asdf-banner jumbotron jumbotron-fluid">
 
   <div class="container">
 

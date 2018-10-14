@@ -46,21 +46,3 @@ function get_view() {
 function asdf_get_option( $option ) {
   return get_option( get_post_type() . '-' . get_view() . '-' . $option);
 }
-
-function asdf_banner_style() {
-  //background-image
- $str = 'background-image: url(';
- if ( asdf_get_option('header-style') === 'featured-img' ) {
-   $str .= get_the_post_thumbnail_url() . ');';
- }
- elseif ( asdf_get_option('header-style') === 'custom-img' ) {
-   $str .= wp_get_attachment_image_src( asdf_get_option( 'header-custom' ), 'full')[0] . ');';
- }
- else {
-   $str = 'display:none;';
- }
-
- //banner height
- $str .= 'height:' . asdf_get_option('header-height') . ';';
- echo $str;
-}

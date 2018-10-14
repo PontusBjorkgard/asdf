@@ -105,7 +105,6 @@ function themeslug_customize_register( $wp_customize ) {
          $wp_customize->add_setting( 'color-p', array(
          'type' => 'theme_mod', // or 'option'
          'capability' => 'edit_theme_options',
-         'theme_supports' => '', // Rarely needed.
          'default' => 'black',
          'transport' => 'refresh', // or postMessage
          'sanitize_callback' => '',
@@ -118,7 +117,6 @@ function themeslug_customize_register( $wp_customize ) {
          'section' => 'text-colors', // Required, core or custom.
          'label' => __( 'P color' ),
          'description' => __( 'P color' ),
-         'active_callback' => 'is_front_page',
        )));
 
 
@@ -126,39 +124,72 @@ function themeslug_customize_register( $wp_customize ) {
 
 
        //Post type specific
-       $wp_customize->add_panel( 'post-type', array(
-        'title' => __( 'Post types' ),
+       $wp_customize->add_panel( 'singles', array(
+        'title' => __( 'Singles' ),
         'description' => __( '' ),
-        'priority' => 160,
+        'capability' => 'edit_theme_options',
+       ));
+
+       $wp_customize->add_panel( 'archives', array(
+        'title' => __( 'Archives' ),
+        'description' => __( '' ),
         'capability' => 'edit_theme_options',
        ));
 
        $post_types = array( get_post_type_object( 'post' ) );
-
-       // Get custom post types as objects. Returns associative array
        $custom_types = get_post_types( array( 'public' => true, '_builtin' => false ), 'objects');
-
        // Add $custom_types associative array to $post_types numeric array
        foreach ($custom_types as $type ) {
          $post_types[] = $type;
        }
 
        for( $i = 0; $i < sizeof($post_types); $i++ ) {
-         $wp_customize->add_section( $post_types[$i]->name, array(
+
+
+
+         $elements = array('banner', 'thumbnail', 'date', 'author', 'comment', 'title', 'categories', 'content', 'readmore', 'tags' );
+         //Single settings
+         $wp_customize->add_section( $post_types[$i]->name . '-single', array(
           'title' => $post_types[$i]->label,
-          'description' => __( 'Customize bg colors' ),
-          'panel'   =>'post-type',
+          'description' => __( 'Visible elements in ' ) . $post_types[$i]->label,
+          'panel'   =>'singles',
           'capability' => 'edit_theme_options',
           ));
 
-          $wp_customize->add_setting( $post_types[$i]->name .'-post-thumbnail' );
+          $wp_customize->add_setting( $post_types[$i]->name . '-single-custom-banner' );
+          $wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, $post_types[$i]->name . '-single-custom-banner', array(
+           'section' => $post_types[$i]->name . '-single',
+           'label' => __( 'Banner image' ),
+           'description' => __( 'Banner image' ),
+          )));
 
-          $wp_customize->add_control( $post_types[$i]->name .'-post-thumbnail', array(
-            'label' => __('Show thumbnail in ') . $post_types[$i]->name,
-            'type' => 'checkbox',
-            'priority' => 10, // Within the section.
-            'section' => $post_types[$i]->name
-          ));
+         for ($y = 0; $y < sizeof($elements); $y++ ) {
+           $wp_customize->add_setting( $post_types[$i]->name . '-single-' . $elements[$y] . '-active' );
+           $wp_customize->add_control( $post_types[$i]->name . '-single-' . $elements[$y] . '-active', array(
+             'label' => $elements[$y],
+             'type' => 'checkbox',
+             'section' => $post_types[$i]->name . '-single'
+           ));
+         }
+
+
+          //Archive settings
+          $wp_customize->add_section( $post_types[$i]->name . '-archive', array(
+           'title' => $post_types[$i]->label,
+           'description' => __( 'Visible elements in ' ) . $post_types[$i]->label,
+           'panel'   =>'archives',
+           'capability' => 'edit_theme_options',
+           ));
+
+          for ($y = 0; $y < sizeof($elements); $y++ ) {
+            $wp_customize->add_setting( $post_types[$i]->name . '-archive-' . $elements[$y] . '-active' );
+            $wp_customize->add_control( $post_types[$i]->name . '-archive-' . $elements[$y] . '-active', array(
+              'label' => $elements[$y],
+              'type' => 'checkbox',
+              'section' => $post_types[$i]->name . '-archive'
+            ));
+          }
+
 
         }
 
