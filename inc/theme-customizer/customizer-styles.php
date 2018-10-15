@@ -22,7 +22,6 @@ function asdf_customized_styles() {
 
   //Posttype specific elements
   $post_type_elements = array(
-    '.asdf-banner'  => asdf_get_theme_mod( 'banner-active' ),
     '.post-thumbnail' => asdf_get_theme_mod( 'thumbnail-active' ),
     '.posted-on' => asdf_get_theme_mod( 'date-active' ),
     '.posted-by' => asdf_get_theme_mod( 'author-active' ),
@@ -34,9 +33,13 @@ function asdf_customized_styles() {
   );
 
   //Banner styles
+  $featured_img = wp_get_attachment_image_src(get_post_thumbnail_id(), 'full' )[0];
+  $banner_img = asdf_get_theme_mod( 'custom-banner' );
+
   $banner_styles = array(
-    'background-image'  => 'url(' . asdf_get_theme_mod( 'custom-banner' ) . ')',
-    'min-height'  => '40vh'
+    'background-image'  => 'url(' . $bg = asdf_get_theme_mod( 'banner-type' ) == 'custom-banner' ? $banner_img . ')' : $featured_img . ')',
+    'min-height'  => asdf_get_theme_mod( 'banner-height' ),
+    'display'     => $display = asdf_get_theme_mod( 'banner-type' ) == 'no-banner' ? 'none;' : 'block'
   );
 
   $css = '<style type="text/css">';

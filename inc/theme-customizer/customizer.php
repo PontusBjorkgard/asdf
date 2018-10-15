@@ -1,5 +1,10 @@
 <?php
 
+//Controls JS API
+function enqueue_customizer_controls_js() {
+    wp_enqueue_script( 'asdf_customizer_control', get_template_directory_uri() . '/inc/theme-customizer/customizer-controls.js', array( 'customize-controls', 'jquery' ), null, true );
+}
+add_action( 'customize_controls_enqueue_scripts', 'enqueue_customizer_controls_js' );
 
 require get_template_directory() . '/inc/theme-customizer/customizer-styles.php';
 
@@ -13,6 +18,7 @@ function themeslug_customize_register( $wp_customize ) {
    'priority' => 160,
    'capability' => 'edit_theme_options',
   ));
+
 
      $wp_customize->add_section( 'bg-colors', array(
       'title' => __( 'Background colors' ),
@@ -143,17 +149,33 @@ function themeslug_customize_register( $wp_customize ) {
          $post_types[] = $type;
        }
 
+       $elements = array( 'thumbnail', 'date', 'author', 'comment', 'title', 'categories', 'content', 'readmore', 'tags' );
        for( $i = 0; $i < sizeof($post_types); $i++ ) {
 
 
 
-         $elements = array('banner', 'thumbnail', 'date', 'author', 'comment', 'title', 'categories', 'content', 'readmore', 'tags' );
+
          //Single settings
          $wp_customize->add_section( $post_types[$i]->name . '-single', array(
           'title' => $post_types[$i]->label,
           'description' => __( 'Visible elements in ' ) . $post_types[$i]->label,
           'panel'   =>'singles',
           'capability' => 'edit_theme_options',
+          ));
+
+          // Banner
+          $wp_customize->add_setting( $post_types[$i]->name . '-single-banner-type' );
+          $wp_customize->add_control( $post_types[$i]->name . '-single-banner-type', array(
+           'type'  => 'radio',
+           'choices' => array(
+             'featured-image-banner' => __( 'Featured Image Banner', 'asdf' ),
+             'custom-banner'    => __( 'Custom Banner', 'asdf' ),
+             'no-banner' => __( 'No banner', 'asdf' )
+           ),
+           'label' => __( 'Banner type' ),
+           'description' => __( 'Banner type' ),
+
+           'section' => $post_types[$i]->name . '-single',
           ));
 
           $wp_customize->add_setting( $post_types[$i]->name . '-single-custom-banner' );
@@ -163,6 +185,15 @@ function themeslug_customize_register( $wp_customize ) {
            'description' => __( 'Banner image' ),
           )));
 
+          $wp_customize->add_setting( $post_types[$i]->name . '-single-banner-height' );
+          $wp_customize->add_control( $post_types[$i]->name . '-single-banner-height', array(
+           'type'  => 'text',
+           'label' => __( 'Banner height' ),
+           'description' => __( 'Banner height' ),
+           'section' => $post_types[$i]->name . '-single',
+          ));
+
+        // elements
          for ($y = 0; $y < sizeof($elements); $y++ ) {
            $wp_customize->add_setting( $post_types[$i]->name . '-single-' . $elements[$y] . '-active' );
            $wp_customize->add_control( $post_types[$i]->name . '-single-' . $elements[$y] . '-active', array(
@@ -181,6 +212,36 @@ function themeslug_customize_register( $wp_customize ) {
            'capability' => 'edit_theme_options',
            ));
 
+           // Banner
+           $wp_customize->add_setting( $post_types[$i]->name . '-archive-banner-type' );
+           $wp_customize->add_control( $post_types[$i]->name . '-archive-banner-type', array(
+            'type'  => 'radio',
+            'choices' => array(
+              'custom-banner'    => __( 'Custom Banner', 'asdf' ),
+              'no-banner' => __( 'No banner', 'asdf' )
+            ),
+            'label' => __( 'Banner type' ),
+            'description' => __( 'Banner type' ),
+            'section' => $post_types[$i]->name . '-archive',
+           ));
+
+           $wp_customize->add_setting( $post_types[$i]->name . '-archive-custom-banner' );
+           $wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, $post_types[$i]->name . '-archive-custom-banner', array(
+            'section' => $post_types[$i]->name . '-archive',
+            'label' => __( 'Banner image' ),
+            'description' => __( 'Banner image' ),
+           )));
+
+           $wp_customize->add_setting( $post_types[$i]->name . '-archive-banner-height' );
+           $wp_customize->add_control( $post_types[$i]->name . '-archive-banner-height', array(
+            'type'  => 'text',
+            'label' => __( 'Banner height' ),
+            'description' => __( 'Banner height' ),
+            'section' => $post_types[$i]->name . '-archive',
+           ));
+
+
+          //elements
           for ($y = 0; $y < sizeof($elements); $y++ ) {
             $wp_customize->add_setting( $post_types[$i]->name . '-archive-' . $elements[$y] . '-active' );
             $wp_customize->add_control( $post_types[$i]->name . '-archive-' . $elements[$y] . '-active', array(
@@ -194,6 +255,34 @@ function themeslug_customize_register( $wp_customize ) {
         }
 
 
+
+
+
+
+
+
+
+
+
+        $wp_customize->add_section( 'test-section', array(
+         'title' => __( 'Test' )
+         ));
+
+            $wp_customize->add_setting( 'test-setting1' );
+
+           $wp_customize->add_control( 'test-setting1', array(
+            'type' => 'checkbox',
+            'priority' => 10, // Within the section.
+            'section' => 'test-section', // Required, core or custom.
+          ));
+
+          $wp_customize->add_setting( 'test-setting2' );
+
+         $wp_customize->add_control( 'test-setting2', array(
+          'type' => 'text',
+          'priority' => 10, // Within the section.
+          'section' => 'test-section', // Required, core or custom.
+        ));
 }
 add_action( 'customize_register', 'themeslug_customize_register' );
 
