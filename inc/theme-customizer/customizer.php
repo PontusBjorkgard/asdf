@@ -185,6 +185,7 @@ function themeslug_customize_register( $wp_customize ) {
            'description' => __( 'Banner image' ),
           )));
 
+
           $wp_customize->add_setting( $post_types[$i]->name . '-single-banner-height' );
           $wp_customize->add_control( $post_types[$i]->name . '-single-banner-height', array(
            'type'  => 'text',
@@ -254,35 +255,6 @@ function themeslug_customize_register( $wp_customize ) {
 
         }
 
-
-
-
-
-
-
-
-
-
-
-        $wp_customize->add_section( 'test-section', array(
-         'title' => __( 'Test' )
-         ));
-
-            $wp_customize->add_setting( 'test-setting1' );
-
-           $wp_customize->add_control( 'test-setting1', array(
-            'type' => 'checkbox',
-            'priority' => 10, // Within the section.
-            'section' => 'test-section', // Required, core or custom.
-          ));
-
-          $wp_customize->add_setting( 'test-setting2' );
-
-         $wp_customize->add_control( 'test-setting2', array(
-          'type' => 'text',
-          'priority' => 10, // Within the section.
-          'section' => 'test-section', // Required, core or custom.
-        ));
 }
 add_action( 'customize_register', 'themeslug_customize_register' );
 

@@ -59,16 +59,7 @@
          })
        }
 
-       wp.customize( 'test-setting1', function( value ) {
-         container = wp.customize.control( 'test-setting2' ).container;
-          if ( !value.get() ) {
-            container.slideUp(180);
-          }
-          value.bind( function( to ) {
-            if ( to ) { container.slideDown(180); }
-            else      { container.slideUp(180); }
-          });
-       });
+
 
     } );
 })( jQuery );

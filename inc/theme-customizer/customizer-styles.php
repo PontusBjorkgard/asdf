@@ -39,7 +39,7 @@ function asdf_customized_styles() {
   $banner_styles = array(
     'background-image'  => 'url(' . $bg = asdf_get_theme_mod( 'banner-type' ) == 'custom-banner' ? $banner_img . ')' : $featured_img . ')',
     'min-height'  => asdf_get_theme_mod( 'banner-height' ),
-    'display'     => $display = asdf_get_theme_mod( 'banner-type' ) == 'no-banner' ? 'none;' : 'block'
+    'display'     => $display = asdf_get_theme_mod( 'banner-type' ) == 'no-banner' ? 'none;' : 'flex'
   );
 
   $css = '<style type="text/css">';
@@ -65,7 +65,6 @@ function asdf_customized_styles() {
      $css .= "$property: $value;" ;
   }
   $css .= "}";
-
   $css .='</style>';
   echo $css;
 }

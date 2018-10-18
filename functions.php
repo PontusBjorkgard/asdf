@@ -86,9 +86,36 @@ function asdf_widgets_init() {
 		'after_title'   => '</h2>',
 	));
 
-}
-add_action( 'widgets_init', 'asdf_widgets_init' );
 
+
+}
+add_action( 'widgets_init', 'asdf_widgets_init');
+
+
+// Header widgets
+function asdf_header_widgets_init() {
+	// Widget område för header
+	$post_types = array( get_post_type_object( 'post' ) );
+	$custom_types = get_post_types( array( 'public' => true, '_builtin' => false ), 'objects');
+	// Add $custom_types associative array to $post_types numeric array
+	foreach ($custom_types as $type ) {
+		$post_types[] = $type;
+	}
+
+
+	foreach ($post_types as $post_type) {
+		register_sidebar( array(
+			'name'          => $post_type->label,
+			'id'            => $post_type->name,
+			'description'   => esc_html__( 'Add widgets here.', 'asdf' ),
+			'before_widget' => '<section id="%1$s" class="widget %2$s col-sm col-xs-12">',
+			'after_widget'  => '</section>',
+			'before_title'  => '<h2 class="widget-title">',
+			'after_title'   => '</h2>',
+		));
+	}
+}
+add_action( 'init', 'asdf_header_widgets_init' );
 
 
 //Scripts and styles
@@ -144,6 +171,11 @@ require get_template_directory() . '/inc/theme-customizer/customizer.php';
  * Metaboxes
  */
 require get_template_directory() . '/inc/theme-metaboxes/metaboxes.php';
+
+/**
+ * Widgets
+ */
+require get_template_directory() . '/inc/theme-widgets/widgets.php';
 
 
 /**
