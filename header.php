@@ -66,7 +66,7 @@
 	get_template_part( 'template-parts/banner' );
 	?>
 
-	<div id="content" class="<?php echo asdf_get_option( 'container-width' ) ?>">
+	<div id="content" class="<?php echo asdf_get_option( 'container-width' ) . asdf_get_meta('_page_fullwidth'); ?>">
 		<div class="row">
 			<div id="primary" class="col">
 				<main id="main" class="site-main row">

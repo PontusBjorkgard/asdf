@@ -140,6 +140,11 @@ require get_template_directory() . '/inc/theme-settings/settings.php';
  */
 require get_template_directory() . '/inc/theme-customizer/customizer.php';
 
+/**
+ * Metaboxes
+ */
+require get_template_directory() . '/inc/theme-metaboxes/metaboxes.php';
+
 
 /**
  * Load Jetpack compatibility file.

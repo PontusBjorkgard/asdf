@@ -44,5 +44,16 @@ function get_view() {
 *  Returns option in format posttype-view-$option
 */
 function asdf_get_option( $option ) {
-  return get_option( get_post_type() . '-' . get_view() . '-' . $option);
+  if ( !is_page() ) {
+    if ( get_option( get_post_type() . '-' . get_view() . '-' . $option) ) {
+      return get_option( get_post_type() . '-' . get_view() . '-' . $option);
+    }
+    else { return; }
+  }
+  else {
+    return;
+  }
+
+
+
 }
