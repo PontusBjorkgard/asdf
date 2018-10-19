@@ -38,7 +38,7 @@ class Foo_Widget extends WP_Widget {
 		}
 		global $post;
 		if ( $instance['post_title'] ) { echo $post->post_title; }
-		if ( $instance['post_author'] ) { echo $post->post_author; }
+		if ( $instance['post_author'] ) { echo get_the_author_meta( 'display_name', $post->post_author ); }
 
 		//echo $instance['content'];
 		echo $args['after_widget'];
