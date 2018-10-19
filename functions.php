@@ -39,10 +39,11 @@ if ( ! function_exists( 'asdf_setup' ) ) :
 		) );
 
 		//image sizes
-		add_image_size( 'asdf-logo', 250 );
+		add_image_size( 'asdf-logo', 250, 100 );
 		add_image_size( 'asdf-thumbnail', 920 ); // For archive
 		add_image_size( 'asdf-full', 1500 ); // For single
     add_image_size( 'homepage-thumb', 220, 180, true );
+		add_image_size( 'header-thumb', 450, 350, true );
 }
 
 

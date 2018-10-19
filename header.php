@@ -32,7 +32,7 @@
 					$custom_logo_id = get_theme_mod( 'custom_logo' );
 					$image = wp_get_attachment_image_src( $custom_logo_id , 'asdf-logo' );
 					?>
-					<img src="<?php echo $image[0]; ?>" height="100">
+					<img src="<?php echo $image[0]; ?>" width="<?php echo $image[1]; ?>" height="<?php echo $image[2]; ?>">
 			</a>
 			<div class="desktop-nav">
 				<?php
