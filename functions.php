@@ -133,6 +133,7 @@ function asdf_scripts() {
 }
 add_action( 'wp_enqueue_scripts', 'asdf_scripts' );
 
+
 /**
  * Implement the Custom Header feature.
  */
@@ -158,6 +159,47 @@ require get_template_directory() . '/inc/customizer.php';
  */
 require get_template_directory() . '/inc/theme-settings/settings.php';
 
+add_action('admin_footer', function() {
+	echo "tinymce.PluginManager.add('example', function(editor, url) {
+    // Add a button that opens a window
+    editor.addButton('example', {
+        text: 'My button',
+        icon: false,
+        onclick: function() {
+            // Open window
+            editor.windowManager.open({
+                title: 'Example plugin',
+                body: [
+                    {type: 'textbox', name: 'title', label: 'Title'}
+                ],
+                onsubmit: function(e) {
+                    // Insert content when the window form is submitted
+                    editor.insertContent('Title: ' + e.data.title);
+                }
+            });
+        }
+    });
+		console.log('hj')
+    // Adds a menu item to the tools menu
+    editor.addMenuItem('example', {
+        text: 'Example plugin',
+        context: 'tools',
+        onclick: function() {
+            // Open window with a specific url
+            editor.windowManager.open({
+                title: 'TinyMCE site',
+                url: 'http://www.tinymce.com',
+                width: 800,
+                height: 600,
+                buttons: [{
+                    text: 'Close',
+                    onclick: 'close'
+                }]
+            });
+        }
+    });
+});";
+});
 
 /**
  * Load Jetpack compatibility file.

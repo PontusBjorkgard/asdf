@@ -59,7 +59,7 @@ $layoutPage = new Subpage( $page, array(
 
 $layoutPage->options[] = array(
   'option_name'     => 'Container width',
-  'option_slug'     => 'post-container-width',
+  'option_slug'     => 'post-single-container-width',
   'option_section'  => 'post',
   'type'            => 'radio',
   'htmlclass'       => 'asdf-radio',
@@ -78,6 +78,8 @@ $layoutPage->options[] = array(
   'choices'         =>  array( 'col-12', 'col-6', 'col-4' ),
   'choices_labels'   =>  array( '1', '2', '3' )
 );
+
+
 
 
 

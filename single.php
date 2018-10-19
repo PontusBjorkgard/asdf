@@ -10,9 +10,9 @@
 get_header();
 ?>
 
-	<div id="primary" class="content-area">
+	<div id="primary" class="content-area col">
 		<main id="main" class="site-main">
-
+<?php asdf_class( 'container' ) ?>
 		<?php
 		while ( have_posts() ) :
 			the_post();
@@ -33,5 +33,11 @@ get_header();
 	</div><!-- #primary -->
 
 <?php
-get_sidebar();
+
+// PONT I HESA
+$sidebar = true;
+if ( $sidebar ) {
+	get_sidebar();
+}
+
 get_footer();

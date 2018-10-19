@@ -49,6 +49,18 @@ function asdf_container_classes( $classes ) {
   return $classes;
 }
 
+//PONT I HESA
+
+function asdf_class( $div ) {
+  if ( is_single() ) {
+    echo get_option( get_post_type() . '-single-' . $div . '-width');
+  }
+  else {
+    echo get_option( get_post_type() . '-archive-' . $div . '-width');
+  }
+}
+
+
 
 //custom div classes test
 

@@ -39,6 +39,8 @@
 					'menu_id'        => 'primary-menu',
 				));
 			?>
+   <?php // PONT I HESA ?>
+			<div style="height:100px; width:100px; background:  <?php echo get_theme_mod( 'exempel-setting', 'yellow' ); ?>" > </div>
 		</nav> <!-- #main-navigation -->
 
 

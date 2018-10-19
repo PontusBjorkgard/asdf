@@ -52,7 +52,19 @@ class OptionsPage {
     }
 
 
-    public function section_callback_function() { }
+    public function section_callback_function() {
+      //PONT I HESA
+        echo '
+        <div class="container">
+          <div class="row">
+            <div class="' . get_option('post-column-quantity') . '">1</div>
+            <div class="' . get_option('post-column-quantity') . '">1</div>
+            <div class="' . get_option('post-column-quantity') . '">1</div>
+            <div class="' . get_option('post-column-quantity') . '">1</div>
+          </div>
+        </div>
+        ';
+     }
 
 
 
