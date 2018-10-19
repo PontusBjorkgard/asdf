@@ -1,4 +1,12 @@
 <?php
+
+
+add_action('admin_enqueue_scripts', function() {
+	wp_enqueue_script( 'jquery-ui-sortable' );
+
+});
+
+
 /**
  * Adds Foo_Widget widget.
  */
@@ -28,8 +36,11 @@ class Foo_Widget extends WP_Widget {
 		if ( ! empty( $instance['title'] ) ) {
 			echo $args['before_title'] . apply_filters( 'widget_title', $instance['title'] ) . $args['after_title'];
 		}
+		global $post;
+		if ( $instance['post_title'] ) { echo $post->post_title; }
+		if ( $instance['post_author'] ) { echo $post->post_author; }
 
-		echo $instance['content'];
+		//echo $instance['content'];
 		echo $args['after_widget'];
 	}
 
@@ -43,6 +54,9 @@ class Foo_Widget extends WP_Widget {
 	public function form( $instance ) {
 		$title = ! empty( $instance['title'] ) ? $instance['title'] : esc_html__( 'New title', 'text_domain' );
     $content = ! empty( $instance['content'] ) ? $instance['content'] : esc_html__( 'New content', 'text_domain' );
+
+		$post_title = ! empty( $instance['post_title'] ) ? $instance['post_title'] : '';
+		$post_author = ! empty( $instance['post_author'] ) ? $instance['post_author'] : '';
 		?>
 		<p>
 		<label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php esc_attr_e( 'Title:', 'text_domain' ); ?></label>
@@ -53,6 +67,35 @@ class Foo_Widget extends WP_Widget {
 		<label for="<?php echo esc_attr( $this->get_field_id( 'content' ) ); ?>"><?php esc_attr_e( 'Content:', 'text_domain' ); ?></label>
 		<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'content' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'content' ) ); ?>" type="text" value="<?php echo esc_attr( $content); ?>">
 		</p>
+
+		<input type="checkbox" value="1" name="<?php echo esc_attr( $this->get_field_name( 'post_title' ) ); ?>" <?php checked( $post_title, '1'); ?>>
+		<input type="checkbox" value="1" name="<?php echo esc_attr( $this->get_field_name( 'post_author' ) ); ?>" <?php checked( $post_author, '1'); ?>>
+
+	<!-- <ul id="test-<?php// echo $this->get_field_id( 'element-list' ); ?>">
+			<li id="element_title">Title</li>
+			<li id="element_date">Date</li>
+			<li id="element_category">Category</li>
+			<li id="element_author">Author</li>
+		</ul>
+		<input type="text" id="<?php// echo esc_attr( $this->get_field_id( 'elements' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'content' ) ); ?>" value="<?php echo esc_attr( $element_string); ?>"  >
+
+
+	<script type="text/javascript">
+	jQuery( function($) {
+	    $( "#test-<?php// echo $this->get_field_id( 'element-list' ); ?>" ).sortable();
+
+			$( "#test-<?php// echo $this->get_field_id( 'element-list' ); ?> li" ).droppable({
+        drop: function( ) {
+						setTimeout( function() {
+							var order = $("#test-<?php //echo $this->get_field_id( 'element-list' ); ?>").sortable("toArray").toString();
+
+							$("#<?php //echo $this->get_field_id( 'elements' ); ?>").val(order);
+						}, 500);
+
+        }
+    });
+	  });
+	</script> -->
 
 		<?php
 	}
@@ -70,6 +113,9 @@ class Foo_Widget extends WP_Widget {
 	public function update( $new_instance, $old_instance ) {
 		$instance = array();
 		$instance['title'] = ( ! empty( $new_instance['title'] ) ) ? sanitize_text_field( $new_instance['title'] ) : '';
+
+		$instance['post_title'] = ( ! empty( $new_instance['post_title'] ) ) ? sanitize_text_field( $new_instance['post_title'] ) : '';
+		$instance['post_author'] = ( ! empty( $new_instance['post_author'] ) ) ? sanitize_text_field( $new_instance['post_author'] ) : '';
 		return $instance;
 	}
 
