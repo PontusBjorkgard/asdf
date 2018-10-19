@@ -126,6 +126,23 @@ function themeslug_customize_register( $wp_customize ) {
        )));
 
 
+       //Fonts
+       $wp_customize->add_panel( 'fonts', array(
+        'title' => __( 'Fonts' ),
+        'description' => __( 'Customize fonts' ),
+        'priority' => 160,
+        'capability' => 'edit_theme_options',
+       ));
+
+       $wp_customize->add_section( 'font-families', array(
+        'title' => __( 'Font families' ),
+        'description' => __( 'Customize font families' ),
+        'panel'   =>'fonts',
+        'capability' => 'edit_theme_options',
+        ));
+
+    
+
 
 
 
